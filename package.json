@@ -1,0 +1,52 @@
+{
+  "name": "forum-app",
+  "version": "1.0.0",
+  "description": "Forum app for VanHack Accelerator Program",
+  "engines": {
+    "node": "6.11.1"
+  },
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcabarreto/forumApp.git"
+  },
+  "keywords": [
+    "forum",
+    "node",
+    "express",
+    "handlebars"
+  ],
+  "author": "Rodrigo Barreto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rcabarreto/forumApp/issues"
+  },
+  "homepage": "https://github.com/rcabarreto/forumApp#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "crypto-js": "^3.1.9-1",
+    "debug": "~2.6.3",
+    "express": "~4.16.1",
+    "express-handlebars": "^3.0.0",
+    "formidable": "^1.1.1",
+    "handlebars-intl": "^1.1.2",
+    "helmet": "^3.8.2",
+    "intl": "^1.2.5",
+    "intl-locales-supported": "^1.0.0",
+    "jsonwebtoken": "^8.0.1",
+    "morgan": "~1.9.0",
+    "mysql2": "^1.4.2",
+    "node-sass-middleware": "^0.11.0",
+    "node-schedule": "^1.2.5",
+    "nodemailer": "^4.1.2",
+    "nodemailer-express-handlebars": "^2.0.0",
+    "sequelize": "^4.13.3",
+    "serve-favicon": "~2.4.5",
+    "sqlite3": "^3.1.13",
+    "underscore": "^1.8.3"
+  }
+}

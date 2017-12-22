@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contability{{#if pageInfo.windowTitle}} - {{pageInfo.windowTitle}}{{/if}}</title>
+
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body{{#if pageInfo.pageName}} class="{{pageInfo.pageName}}"{{/if}}>
+
+<div class="container-fluid">
+
+  <div class="card card-container" id="loginCard">
+    <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+    <img id="profile-img" class="profile-img-card" src="/images/avatar_2x.png" />
+    <p id="profile-name" class="profile-name-card"></p>
+    <form id="loginForm" method="post" class="form-signin">
+      <span id="reauth-email" class="reauth-email"></span>
+      <input type="email" name="email" value="" id="inputEmail" class="form-control" placeholder="Usuário">
+      <input type="password" name="password" value="" id="inputPassword" class="form-control" placeholder="Senha">
+      <div id="remember" class="checkbox">
+        <label>
+          <input type="checkbox" value="remember-me"> Lembrar de mim
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Entrar</button>
+    </form><!-- /form -->
+    <a href="/esquecisenha" class="forgot-password">
+      Esqueceu sua senha?
+    </a>
+  </div><!-- /card-container -->
+
+</div>
+
+
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/validator.min.js"></script>
+
+<script src="/javascripts/addons.min.js"></script>
+<script src="/javascripts/login.min.js"></script>
+
+</body>
+
+</html>
