@@ -12,13 +12,13 @@ const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
 const schedule = require('node-schedule');
 
-const db = require('./db.js');
+const db = require('./db');
 
 const exphbs = require('express-handlebars');
 const HandlebarsIntl = require('handlebars-intl');
 const hbsHelpers = require('./lib/helpers');
 
-const middleware = require('./middleware.js')(db);
+const middleware = require('./middleware')(db);
 
 const index = require('./routes/index')(db, middleware);
 
