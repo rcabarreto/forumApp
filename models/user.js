@@ -7,21 +7,17 @@ const jwt = require('jsonwebtoken');
 
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define('user', {
-    external_id: {
-      type: DataTypes.STRING(32),
-      allowNull: true
-    },
-    name: {
-      type: DataTypes.STRING(120),
-      allowNull: true
-    },
     first_name: {
       type: DataTypes.STRING(32),
-      allowNull: true
+      allowNull: false
     },
     last_name: {
       type: DataTypes.STRING(32),
-      allowNull: true
+      allowNull: false
+    },
+    display_name: {
+      type: DataTypes.STRING(32),
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING(128),
@@ -50,22 +46,6 @@ module.exports = (sequelize, DataTypes) => {
         this.setDataValue('salt', salt);
         this.setDataValue('password_hash', hashedPassword);
       }
-    },
-    gender: {
-      type: DataTypes.STRING(12),
-      allowNull: true
-    },
-    link: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    locale: {
-      type: DataTypes.STRING(6),
-      allowNull: true
-    },
-    timezone: {
-      type: DataTypes.INTEGER,
-      allowNull: true
     }
   }, {
     hooks: {
@@ -129,7 +109,7 @@ module.exports = (sequelize, DataTypes) => {
   // instance methods
   user.prototype.toPublicJSON = function () {
     let json = this.toJSON();
-    return _.pick(json, 'id', 'name', 'email', 'locale', 'timezone', 'createdAt', 'updatedAt');
+    return _.pick(json, 'id', 'first_name', 'last_name', 'email', 'createdAt', 'updatedAt');
   };
 
   user.prototype.generateToken = function (type) {

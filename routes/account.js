@@ -8,16 +8,16 @@ module.exports = (db, middleware) => {
   let router = express.Router();
 
 
-  /* GET home page. */
-  router.get('/', function(req, res, next) {
-
-    db.forum.findAll().then(forums => {});
-
-    res.render('index', { title: 'Express' });
+  router.get('/register', function(req, res, next) {
+    res.render('register', { title: 'Express' });
   });
 
+  router.get('/signin', function(req, res, next) {
+    let pageInfo = { windowTitle: "Login", pageName: "login" };
+    res.render('signin', { layout: false, pageInfo: pageInfo });
+  });
 
-  router.post('/login', (req, res, next) => {
+  router.post('/signin', (req, res, next) => {
 
     let body = _.pick(req.body, 'email', 'password');
     let userInstance;
@@ -38,18 +38,14 @@ module.exports = (db, middleware) => {
     });
   });
 
+  router.get('/forgotpassword', function (req,res, next) {
 
-
-
-  router.post('/esquecisenha', function (req,res, next) {
-
-    var email = req.body.email;
+    let email = req.body.email;
 
     db.user.findOne({
       where: { email: email }
     }).then(function(user) {
       if (user) {
-        console.log(JSON.stringify(user));
         res.send(JSON.stringify(user.toPublicJSON()));
       } else {
         res.status(404).send();
@@ -58,7 +54,13 @@ module.exports = (db, middleware) => {
       res.status(500).send();
     });
 
+
+
+    let pageInfo = { windowTitle: "Esqueci a Senha", pageName: "login" };
+    res.render('forgotPassword', { pageInfo: pageInfo });
   });
+
+
 
 
   return router;

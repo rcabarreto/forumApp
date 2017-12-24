@@ -1,66 +1,70 @@
 
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"><img alt="Brand" src="/images/navbar-logo.png"></a>
+    </div>
 
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-left" href="/"><img alt="Brand" src="/images/navbar-logo.png"></a>
-      </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="forum-navbar">
+    <div id="navbar" class="navbar-collapse collapse">
 
-        <!--left menu group-->
-        <ul class="nav navbar-nav">
 
-          <li class="active"><a href="#">Item ativo <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Item</a></li>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">Nav header</li>
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
 
-          <!--dropdown menu-->
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relatórios <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/gerar404">Gerar 404</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-          </li>
 
-        </ul>
 
-        <!--right menu group-->
-        <ul class="nav navbar-nav navbar-right">
+      {{#if @root.data.user.name}}
+      <!--right menu group-->
+      <ul class="nav navbar-nav navbar-right">
 
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administração <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/admin/usuario">Usuários</a></li>
-              <li><a href="/admin/perfil">Perfis de acesso</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="/admin/seguradora">Seguradoras</a></li>
-            </ul>
-          </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administração <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/admin/usuario">Usuários</a></li>
+            <li><a href="/admin/perfil">Perfis de acesso</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/admin/seguradora">Seguradoras</a></li>
+          </ul>
+        </li>
 
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Olá, {{@root.data.user.name}} <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/perfil">Meu Perfil</a></li>
-              <li><a href="/perfil/senha">Alterar Senha</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="/logout">Sair</a></li>
-            </ul>
-          </li>
-        </ul>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Olá, {{@root.data.user.name}} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/perfil">Meu Perfil</a></li>
+            <li><a href="/perfil/senha">Alterar Senha</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/logout">Sair</a></li>
+          </ul>
+        </li>
+      </ul>
 
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
+      {{else}}
+        {{> login}}
+      {{/if}}
+
+
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>

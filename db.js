@@ -15,9 +15,21 @@ let db = {};
 db.tag = sequelize.import(__dirname + '/models/tag.js');
 db.user = sequelize.import(__dirname + '/models/user.js');
 db.token = sequelize.import(__dirname + '/models/token.js');
+db.forum = sequelize.import(__dirname + '/models/forum.js');
+db.topic = sequelize.import(__dirname + '/models/topic.js');
+db.post = sequelize.import(__dirname + '/models/post.js');
 
 // STARTUP
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+
+db.topic.belongsTo(db.forum);
+db.forum.hasMany(db.topic);
+
+db.post.belongsTo(db.topic);
+db.topic.hasMany(db.post);
+
+
 
 module.exports = db;
