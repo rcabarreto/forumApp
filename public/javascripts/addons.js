@@ -1,4 +1,15 @@
 
+$(document).ready(function(e){
+  // Bug fix for text fields when opening TinyMCE and/or MoxieManager windows inside a Bootstrap Modal.
+  $(document).on('focusin', function(e) {
+    if ($(e.target).closest(".mce-window").length || $(e.target).closest(".moxman-window").length) {
+      e.stopImmediatePropagation();
+    }
+  });
+});
+
+
+
 
 (function ($) {
   $.fn.serializeFormJSON = function () {

@@ -10,7 +10,7 @@ module.exports = (db, middleware) => {
 
   /* send to home page */
   router.get('/', function(req, res, next) {
-    res.redirect('/');
+    res.render('forums', { title: 'Express forum' });
   });
 
 
@@ -18,7 +18,7 @@ module.exports = (db, middleware) => {
 
     let forumId = parseInt(req.params.forumId, 10);
 
-    res.render('topiclist', { title: 'Express forum' });
+    res.render('forum', { title: 'Express forum' });
   });
 
 

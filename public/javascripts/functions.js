@@ -1,5 +1,21 @@
 
 
+tinymce.init({
+  selector: 'textarea',
+  height: 260,
+  theme: 'modern',
+  plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
+  toolbar1: 'formatselect | bold italic underline strikethrough forecolor backcolor | link unlink | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat | preview',
+  toolbar2: "fontselect fontsizeselect | cut copy paste | undo redo | table | hr | subscript superscript | image media code",
+  menubar: false,
+  image_advtab: true
+});
+
+
+
+
+
+
 function sendNotification(title, message, type) {
 
   if (!type)

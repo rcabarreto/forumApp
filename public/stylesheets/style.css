@@ -8315,4 +8315,28 @@ h5 {
 .meta a:hover {
   color: rgba(0, 0, 0, 0.87); }
 
+.row.topic:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0; }
+
+.row.topic {
+  border-top: solid 1px #CCCCCC;
+  margin-top: 20px;
+  padding-top: 20px; }
+
+.row.forum-toolbar button.btn.btn-primary {
+  margin: 20px 0; }
+
+dl {
+  text-align: center; }
+
+dt.stats_number {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.3; }
+
+dd.stats_type {
+  color: #8d9aa6; }
+
 /*# sourceMappingURL=style.css.map */

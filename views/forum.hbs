@@ -1,0 +1,85 @@
+
+
+<div class="page-header">
+  <h1>Forum 1</h1>
+  <p>Se hoje é o dia das crianças... Ontem eu disse: o dia da criança é o dia da mãe, dos pais, das professoras, mas também é o dia dos animais, sempre que você olha uma criança, há sempre uma figura oculta, que é um cachorro atrás.</p>
+</div>
+
+
+
+<div class="row forum-toolbar">
+  <div class="col-xs-8">
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        <li>
+          <a href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li>
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+  </div>
+  <div class="col-xs-4">
+    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newTopicModal" data-title="New topic">New Topic</button>
+  </div>
+</div>
+
+
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Featured topics</h3>
+      </div>
+      <div class="panel-body">
+
+
+        {{>topic}}
+
+
+      </div>
+    </div>
+
+  </div><!-- /.col-sm-4 -->
+
+
+</div>
+
+
+
+
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Topics</h3>
+      </div>
+      <div class="panel-body">
+
+        {{>topic}}
+
+        {{>topic}}
+
+      </div>
+    </div>
+
+  </div><!-- /.col-sm-4 -->
+
+
+</div>
