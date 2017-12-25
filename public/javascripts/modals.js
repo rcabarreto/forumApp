@@ -1,4 +1,17 @@
 
+
+$('#newForumModal').on('show.bs.modal', function (event) {
+
+  var button = $(event.relatedTarget);
+
+  var modalTitle = button.data('title');
+  var modal = $(this)
+
+  modal.find('.modal-title').text(modalTitle);
+
+});
+
+
 $('#newTopicModal').on('show.bs.modal', function (event) {
 
   var button = $(event.relatedTarget);

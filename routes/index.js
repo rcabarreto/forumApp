@@ -9,7 +9,7 @@ module.exports = (db, middleware) => {
 
 
   /* GET home page. */
-  router.get('/', middleware.checkInstall, (req, res, next) => {
+  router.get('/', middleware.verifyAuthentication, (req, res, next) => {
 
     db.forum.findAll().then(forums => {
       res.render('index', { forums: forums });

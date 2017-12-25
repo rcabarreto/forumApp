@@ -22,9 +22,9 @@
         <div class="card">
           <img class="card-img-top" src="/images/forum.png">
           <div class="card-block">
-            <h4 class="card-title">Forum 1</h4>
+            <h4 class="card-title">{{forum.title}}</h4>
             <div class="card-text">
-              Se hoje é o dia das crianças... Ontem eu disse: o dia da criança é o dia da mãe, dos pais, das professoras, mas também é o dia dos animais, sempre que você olha uma criança, há sempre uma figura oculta, que é um cachorro atrás.
+              {{encodeMyString forum.description}}
             </div>
           </div>
           <div class="card-footer">
@@ -34,7 +34,7 @@
           <div class="card-footer">
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
               <div class="btn-group" role="group">
-                <a class="btn btn-info" href="/forum/1" role="button">View forum »</a>
+                <a class="btn btn-info" href="/forum/{{forum.id}}" role="button">View forum »</a>
               </div>
             </div>
           </div>
@@ -47,7 +47,12 @@
 
 {{else}}
 
-  create your first forum now!
+
+  {{#ifCond @root.data.user.profile 'admin'}}
+  <p>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newForumModal" data-title="New Forum">create your first forum now!</button>
+  </p>
+  {{/ifCond}}
 
 {{/if}}
 

@@ -52,7 +52,12 @@ module.exports = (db, middleware) => {
     let body = _.pick(req.body, 'email', 'password');
     let userInstance;
 
+    console.log('FORM: '+ JSON.stringify(body));
+
     db.user.authenticate(body).then(user => {
+
+      console.log('USER: '+ JSON.stringify(user));
+
       let token = user.generateToken('authentication');
       userInstance = user;
       return db.token.create({
@@ -64,7 +69,7 @@ module.exports = (db, middleware) => {
       res.redirect('/');
     }).catch(err => {
       console.log('error: ' + err);
-      res.status(401).send(err);
+      res.redirect('/');
     });
   });
 

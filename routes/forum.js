@@ -1,6 +1,7 @@
 'use strict';
 
-let express = require('express');
+const express = require('express');
+const _ = require('underscore');
 
 
 module.exports = (db, middleware) => {
@@ -9,16 +10,34 @@ module.exports = (db, middleware) => {
 
 
   /* send to home page */
-  router.get('/', function(req, res, next) {
+  router.get('/', (req, res, next) => {
     res.render('forums', { title: 'Express forum' });
   });
 
 
-  router.get('/:forumId', function(req, res, next) {
+  router.post('/new', (req, res, next) => {
+
+    let forum = _.pick(req.body, 'title', 'description', 'visibility', 'featured', 'allowanonymous');
+
+    db.forum.create(forum).then(forum => {
+      console.log(JSON.stringify(forum));
+      res.redirect('/forum/'+ forum.id);
+    });
+
+  });
+
+
+  router.get('/:forumId', (req, res, next) => {
 
     let forumId = parseInt(req.params.forumId, 10);
 
-    res.render('forum', { title: 'Express forum' });
+    db.forum.findById(forumId).then(forum => {
+
+      console.log(JSON.stringify(forum));
+
+      res.render('forum', { forum: forum });
+    });
+
   });
 
 

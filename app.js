@@ -15,8 +15,9 @@ const schedule = require('node-schedule');
 const db = require('./db');
 
 const exphbs = require('express-handlebars');
+const handlebars = require('handlebars');
 const HandlebarsIntl = require('handlebars-intl');
-const hbsHelpers = require('./lib/helpers');
+const hbsHelpers = require('./lib/helpers')(handlebars);
 
 const middleware = require('./middleware')(db);
 
@@ -26,6 +27,7 @@ const account = require('./routes/account')(db, middleware);
 const forum = require('./routes/forum')(db, middleware);
 
 const app = express();
+
 
 app.set('default locale', 'en-US');
 
@@ -45,6 +47,7 @@ let hbs = exphbs.create({
 app.engine(hbs.extname, hbs.engine);
 app.set('view engine', hbs.extname);
 HandlebarsIntl.registerWith(hbs.handlebars);
+
 
 
 // uncomment after placing your favicon in /public
@@ -89,7 +92,7 @@ app.use(function(err, req, res, next) {
 });
 
 // sync the database
-db.sequelize.sync({force:true}).then(function() {
+db.sequelize.sync().then(function() {
   // {force:true}
 
 });

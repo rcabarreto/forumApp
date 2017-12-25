@@ -1,4 +1,48 @@
 
+<!--NEW FORUM MODAL FORM -->
+<div class="modal fade newForumModal" id="newForumModal" tabindex="-1" role="dialog" aria-labelledby="newForumModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <form method="post" action="/forum/new">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title"></h4>
+        </div>
+
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Title</label>
+            <input type="text" name="title" class="form-control" id="forumTitle" placeholder="Title">
+          </div>
+          <div class="form-group">
+            <textarea name="description"></textarea>
+          </div>
+
+          <div class="form-group">
+            <input type="checkbox" id="inlineVisibilityCheckbox" value="public" class="checkboxSwitch" checked data-label-text="Visibility" data-on-text="Public" data-off-text="Private">
+            <input type="checkbox" id="inlineFeaturedCheckbox" value="true" class="checkboxSwitch" checked data-label-text="Featured" data-on-text="Yes" data-off-text="No">
+            <input type="checkbox" id="inlineAnonimousCheckbox" value="true" class="checkboxSwitch" checked data-label-text="Anonimous" data-on-text="Yes" data-off-text="No">
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <input type="submit" value="Create Forum" id="buttonConfirm" class="btn btn-primary">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
 <div class="modal fade newTopicModal" id="newTopicModal" tabindex="-1" role="dialog" aria-labelledby="newTopicModal">
   <div class="modal-dialog modal-lg" role="document">
@@ -14,7 +58,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="exampleInputEmail1">Title</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+            <input type="text" class="form-control" id="topicTitle" placeholder="Title">
           </div>
           <div class="form-group">
             <textarea></textarea>
@@ -31,6 +75,8 @@
     </div>
   </div>
 </div>
+
+
 
 
 <div class="modal fade" tabindex="-1" id="confirmDelete" role="dialog">

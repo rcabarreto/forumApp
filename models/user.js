@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     profile: {
       type: DataTypes.ENUM,
       allowNull: false,
-      values: ['user', 'admin'],
+      values: ['user', 'moderator', 'admin'],
       defaultValue: 'user'
     },
     salt: {
@@ -115,7 +115,7 @@ module.exports = (sequelize, DataTypes) => {
   // instance methods
   user.prototype.toPublicJSON = function () {
     let json = this.toJSON();
-    return _.pick(json, 'id', 'first_name', 'last_name', 'email', 'createdAt', 'updatedAt');
+    return _.pick(json, 'id', 'first_name', 'last_name', 'display_name', 'email', 'profile', 'createdAt', 'updatedAt');
   };
 
   user.prototype.generateToken = function (type) {

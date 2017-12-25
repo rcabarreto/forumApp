@@ -1,5 +1,7 @@
 $(function () {
 
+  $(".checkboxSwitch").bootstrapSwitch();
+
   $('#password').pwstrength({
     common: {
       minChar: 8,
