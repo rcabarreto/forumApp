@@ -23,13 +23,14 @@ db.post = sequelize.import(__dirname + '/models/post.js');
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.forum.belongsTo(db.forum, { foreignKey: 'parentId' });
+db.forum.hasMany(db.forum, { foreignKey: 'parentId' });
 
 db.topic.belongsTo(db.forum);
 db.forum.hasMany(db.topic);
 
 db.post.belongsTo(db.topic);
 db.topic.hasMany(db.post);
-
 
 
 module.exports = db;

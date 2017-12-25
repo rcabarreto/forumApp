@@ -1,11 +1,21 @@
 $(function () {
 
   $('#password').pwstrength({
+    common: {
+      minChar: 8,
+      maxChar: 32
+    },
     ui: {
       container: "#pwd-container",
       showVerdictsInsideProgressBar: true,
       viewports: {
         progress: ".pwstrength_viewport_progress"
+      }
+    },
+    rules: {
+      activated: {
+        wordTwoCharacterClasses: true,
+        wordRepetitions: true
       }
     }
   });

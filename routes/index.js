@@ -22,11 +22,11 @@ module.exports = (db, middleware) => {
 
     let formConfig = {
       profile: 'admin',
-      title: 'Finish installation',
+      title: 'Installation',
       subtitle: 'Create admin user',
       method: 'post',
       action: '/account/register',
-      buttonlabel: 'Create Admin user',
+      buttonlabel: 'Next',
       data: {
         first_name: '',
         last_name: '',
@@ -35,7 +35,7 @@ module.exports = (db, middleware) => {
       }
     };
 
-    res.render('userform', { form: formConfig });
+    res.render('install', { form: formConfig });
   });
 
 
