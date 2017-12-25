@@ -1,7 +1,7 @@
 'use strict';
 
-let express = require('express');
-
+const express = require('express');
+const _ = require('underscore');
 
 module.exports = (db, middleware) => {
 
@@ -9,8 +9,38 @@ module.exports = (db, middleware) => {
 
 
   router.get('/register', function(req, res, next) {
-    res.render('register', { title: 'Express' });
+
+    let formConfig = {
+      title: 'Sign up',
+      subtitle: 'Enter your details bellow',
+      method: 'post',
+      action: '/account/register',
+      buttonlabel: 'Sign up',
+      data: {
+        first_name: '',
+        last_name: '',
+        display_name: '',
+        email: ''
+      }
+    };
+
+    res.render('userform', { form: formConfig });
   });
+
+
+  router.post('/register', (req, res, next) => {
+
+    let body = _.pick(req.body, 'first_name', 'last_name', 'display_name', 'email', 'profile', 'password');
+
+    db.user.create(body).then(function(user) {
+      res.redirect('/');
+    }, function(e) {
+      res.status(400).json(e);
+    });
+
+
+  });
+
 
   router.get('/signin', function(req, res, next) {
     let pageInfo = { windowTitle: "Login", pageName: "login" };

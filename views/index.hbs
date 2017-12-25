@@ -13,32 +13,39 @@
   <h1>Forums</h1>
 </div>
 
-<div class="row">
+{{#if forums}}
+  <div class="row">
 
-  <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-    <div class="card">
-      <img class="card-img-top" src="/images/forum.png">
-      <div class="card-block">
-        <h4 class="card-title">Forum 1</h4>
-        <div class="card-text">
-          Se hoje é o dia das crianças... Ontem eu disse: o dia da criança é o dia da mãe, dos pais, das professoras, mas também é o dia dos animais, sempre que você olha uma criança, há sempre uma figura oculta, que é um cachorro atrás.
-        </div>
-      </div>
-      <div class="card-footer">
-        <small>Last updated 3 mins ago</small>
-        <span class="pull-right">Topics <span class="badge">42</span></span>
-      </div>
-      <div class="card-footer">
-        <div class="btn-group btn-group-justified" role="group" aria-label="...">
-          <div class="btn-group" role="group">
-            <a class="btn btn-info" href="/forum/1" role="button">View forum »</a>
+  {{#each forums as |forum|}}
+
+      <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+        <div class="card">
+          <img class="card-img-top" src="/images/forum.png">
+          <div class="card-block">
+            <h4 class="card-title">Forum 1</h4>
+            <div class="card-text">
+              Se hoje é o dia das crianças... Ontem eu disse: o dia da criança é o dia da mãe, dos pais, das professoras, mas também é o dia dos animais, sempre que você olha uma criança, há sempre uma figura oculta, que é um cachorro atrás.
+            </div>
+          </div>
+          <div class="card-footer">
+            <small>Last updated 3 mins ago</small>
+            <span class="pull-right">Topics <span class="badge">42</span></span>
+          </div>
+          <div class="card-footer">
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+              <div class="btn-group" role="group">
+                <a class="btn btn-info" href="/forum/1" role="button">View forum »</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+  {{/each}}
+
   </div>
 
-</div>
+{{/if}}
 
 
 

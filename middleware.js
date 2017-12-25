@@ -2,10 +2,26 @@
 
 const cryptojs = require('crypto-js');
 const utils = require('./lib/globalFunctions');
+const _ = require('underscore');
 
 module.exports = function (db) {
 
   return {
+    checkInstall: (req, res, next) => {
+
+      db.user.findAll({ where: { profile: 'admin' } }).then(users => {
+        if (_.isEmpty(users)) {
+          console.log('Admins users not found!');
+          res.redirect('/install');
+        } else {
+          next();
+        }
+      });
+
+      console.log('checking installation!');
+
+
+    },
     intl: (req, res, next) => {
       let app = req.app;
 

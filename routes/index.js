@@ -9,11 +9,33 @@ module.exports = (db, middleware) => {
 
 
   /* GET home page. */
-  router.get('/', function(req, res, next) {
+  router.get('/', middleware.checkInstall, (req, res, next) => {
 
-    db.forum.findAll().then(forums => {});
+    db.forum.findAll().then(forums => {
+      res.render('index', { forums: forums });
+    });
 
-    res.render('index', { title: 'Express' });
+  });
+
+
+  router.get('/install', (req, res, next) => {
+
+    let formConfig = {
+      profile: 'admin',
+      title: 'Finish installation',
+      subtitle: 'Create admin user',
+      method: 'post',
+      action: '/account/register',
+      buttonlabel: 'Create Admin user',
+      data: {
+        first_name: '',
+        last_name: '',
+        display_name: 'admin',
+        email: ''
+      }
+    };
+
+    res.render('userform', { form: formConfig });
   });
 
 

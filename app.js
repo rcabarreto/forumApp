@@ -27,7 +27,7 @@ const forum = require('./routes/forum')(db, middleware);
 
 const app = express();
 
-app.set('default locale', 'pt-BR');
+app.set('default locale', 'en-US');
 
 
 // configure headers
@@ -89,7 +89,7 @@ app.use(function(err, req, res, next) {
 });
 
 // sync the database
-db.sequelize.sync().then(function() {
+db.sequelize.sync({force:true}).then(function() {
   // {force:true}
 
 });

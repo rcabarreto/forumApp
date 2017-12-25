@@ -10,16 +10,26 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(230),
       allowNull: true
     },
-    status: {
-      type: DataTypes.ENUM,
-      allowNull: false,
-      values: ['open', 'close'],
-      defaultValue: 'open'
-    },
     visibility: {
       type: DataTypes.ENUM,
       allowNull: true,
       values: ['public', 'private']
+    },
+    featured: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    allowanonymous: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    status: {
+      type: DataTypes.ENUM,
+      allowNull: true,
+      values: ['open', 'readonly', 'closed'],
+      defaultValue: 'open'
     },
     order: {
       type: DataTypes.INTEGER,

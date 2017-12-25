@@ -14,6 +14,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM,
       allowNull: true,
       values: ['public', 'private']
+    },
+    featured: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    status: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     }
   });
 

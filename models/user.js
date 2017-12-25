@@ -27,6 +27,12 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true
       }
     },
+    profile: {
+      type: DataTypes.ENUM,
+      allowNull: false,
+      values: ['user', 'admin'],
+      defaultValue: 'user'
+    },
     salt: {
       type: DataTypes.STRING
     },

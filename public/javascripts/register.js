@@ -1,4 +1,16 @@
 $(function () {
+
+  $('#password').pwstrength({
+    ui: {
+      container: "#pwd-container",
+      showVerdictsInsideProgressBar: true,
+      viewports: {
+        progress: ".pwstrength_viewport_progress"
+      }
+    }
+  });
+
+
   $('.button-checkbox').each(function () {
 
     // Settings
@@ -64,3 +76,5 @@ $(function () {
     init();
   });
 });
+
+
