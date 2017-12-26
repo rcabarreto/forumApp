@@ -72,8 +72,6 @@ module.exports = function (db) {
     verifyAuthentication: (req, res, next) => {
       let token = req.cookies.vanhackforumapp_login_token || '';
 
-      req.systemMenu = {isSystemAdmin: true};
-
       db.token.findOne({
         where: {
           tokenHash: cryptojs.MD5(token).toString()
@@ -94,7 +92,8 @@ module.exports = function (db) {
         return null;
 
       }).catch(function () {
-        res.redirect('/login');
+        next();
+        return null;
       });
     }
 

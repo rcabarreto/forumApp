@@ -9,22 +9,17 @@ module.exports = (db, middleware) => {
   let router = express.Router();
 
 
-  /* send to home page */
-  router.get('/', (req, res, next) => {
-    res.render('forums', { title: 'Express forum' });
-  });
-
 
   router.post('/new', (req, res, next) => {
 
     let userId = req.user.id;
-    let forum = _.pick(req.body, 'title', 'description', 'visibility', 'featured', 'allowanonymous');
+    let topic = _.pick(req.body, 'title', 'description', 'forumId');
 
-    forum.userId = userId;
+    topic.userId = userId;
 
-    db.forum.create(forum).then(forum => {
-      console.log(JSON.stringify(forum));
-      res.redirect('/forum/'+ forum.id);
+    db.topic.create(topic).then(topic => {
+      console.log(JSON.stringify(topic));
+      res.redirect('/forum/'+ topic.forumId);
     });
 
   });

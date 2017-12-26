@@ -25,6 +25,7 @@ const index = require('./routes/index')(db, middleware);
 const user = require('./routes/user')(db, middleware);
 const account = require('./routes/account')(db, middleware);
 const forum = require('./routes/forum')(db, middleware);
+const topic = require('./routes/topic')(db, middleware);
 
 const app = express();
 
@@ -67,10 +68,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(middleware.intl);
 
-app.use('/', index);
+app.use('/', middleware.verifyAuthentication, index);
 app.use('/user', user);
 app.use('/account', account);
 app.use('/forum', forum);
+app.use('/topic', topic);
 
 
 // catch 404 and forward to error handler

@@ -97,6 +97,17 @@ module.exports = (db, middleware) => {
 
 
 
+  router.get('/signout', middleware.requireAuthentication, function (req, res, next) {
+
+    req.token.destroy().then(function () {
+      // res.status(204).send();
+      res.clearCookie('vanhackforumapp_login_token');
+      res.redirect('/');
+    }).catch(function () {
+      res.status(500).send();
+    });
+
+  });
 
   return router;
 };

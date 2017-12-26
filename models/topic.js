@@ -6,14 +6,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(60),
       allowNull: true
     },
-    message: {
+    description: {
       type: DataTypes.TEXT,
       allowNull: true
     },
     type: {
       type: DataTypes.ENUM,
-      allowNull: true,
-      values: ['public', 'private']
+      allowNull: false,
+      values: ['public', 'private'],
+      defaultValue: 'public'
     },
     featured: {
       type: DataTypes.BOOLEAN,

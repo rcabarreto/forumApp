@@ -33,4 +33,11 @@ db.post.belongsTo(db.topic);
 db.topic.hasMany(db.post);
 
 
+db.topic.belongsTo(db.user);
+db.user.hasMany(db.topic);
+
+db.forum.belongsTo(db.user);
+db.user.hasMany(db.forum);
+
+
 module.exports = db;

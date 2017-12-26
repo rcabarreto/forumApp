@@ -10,7 +10,11 @@ module.exports = (db, middleware) => {
 
   /* GET home page. */
   router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+
+    db.user.findAll().then(users => {
+      res.render('users', { users: users });
+    });
+
   });
 
 

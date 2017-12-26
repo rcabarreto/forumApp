@@ -10,7 +10,17 @@
 
 
 <div class="page-header">
-  <h1>Forums</h1>
+
+  <div class="row">
+    <div class="col-xs-6"><h1>Forums</h1></div>
+    <div class="col-xs-6">
+      {{#ifCond @root.data.user.profile 'admin'}}
+        <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newForumModal" data-title="New Forum">Create new forum <span class="glyphicon glyphicon-plus"></span></button>
+      {{/ifCond}}
+    </div>
+  </div>
+
+
 </div>
 
 {{#if forums}}
@@ -47,12 +57,7 @@
 
 {{else}}
 
-
-  {{#ifCond @root.data.user.profile 'admin'}}
-  <p>
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newForumModal" data-title="New Forum">create your first forum now!</button>
-  </p>
-  {{/ifCond}}
+  <h3>No forums created yet</h3>
 
 {{/if}}
 

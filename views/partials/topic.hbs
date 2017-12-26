@@ -1,7 +1,7 @@
 <div class="row topic">
   <div class="col-sm-6">
-    <h4>Topic title <small>By john_doe, 20 de fevereiro de 2015</small></h4>
-    Se hoje é o dia das crianças... Ontem eu disse: o dia da criança é o dia da mãe, dos pais, das professoras, mas também é o dia dos animais, sempre que você olha uma criança, há sempre uma figura oculta, que é um cachorro atrás.
+    <h4><a href="/topic/{{topic.id}}">{{topic.title}}</a></h4>
+    {{encodeMyString topic.description}}
   </div>
   <div class="col-sm-3">
     <dl>
@@ -14,6 +14,6 @@
     </dl>
   </div>
   <div class="col-sm-3">
-
+    <small>by {{topic.user.display_name}}, 20 de fevereiro de 2015</small>
   </div>
 </div>

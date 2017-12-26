@@ -1,8 +1,8 @@
 
 
 <div class="page-header">
-  <h1>Forum 1</h1>
-  <p>Se hoje é o dia das crianças... Ontem eu disse: o dia da criança é o dia da mãe, dos pais, das professoras, mas também é o dia dos animais, sempre que você olha uma criança, há sempre uma figura oculta, que é um cachorro atrás.</p>
+  <h1>{{forum.title}}</h1>
+  {{encodeMyString forum.description}}
 </div>
 
 
@@ -32,14 +32,15 @@
 
   </div>
   <div class="col-xs-4">
-    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newTopicModal" data-title="New topic">New Topic</button>
+    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newTopicModal" data-title="New topic for {{forum.title}}" data-forum-id="{{forum.id}}">New Topic <span class="glyphicon glyphicon-plus"></span></button>
   </div>
 </div>
 
 
 
-
+{{#if forum.featuredTopics}}
 <div class="row">
+
   <div class="col-sm-12">
     <div class="panel panel-primary">
       <div class="panel-heading">
@@ -47,24 +48,22 @@
       </div>
       <div class="panel-body">
 
-
-        {{>topic}}
-
+        {{#each forum.featuredTopics as |featuredTopic|}}
+          {{>topic topic=featuredTopic}}
+        {{/each}}
 
       </div>
     </div>
-
-  </div><!-- /.col-sm-4 -->
-
+  </div>
 
 </div>
+{{/if}}
 
 
 
-
-
-
+{{#if forum.topics}}
 <div class="row">
+
   <div class="col-sm-12">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -72,14 +71,13 @@
       </div>
       <div class="panel-body">
 
-        {{>topic}}
-
-        {{>topic}}
+        {{#each forum.topics as |topic|}}
+          {{>topic topic=topic}}
+        {{/each}}
 
       </div>
     </div>
-
-  </div><!-- /.col-sm-4 -->
-
+  </div>
 
 </div>
+{{/if}}
