@@ -5,15 +5,15 @@
   </div>
   <div class="col-sm-5">
     <h4><a href="/forum/{{forum.id}}">{{forum.title}}</a></h4>
-    {{encodeMyString topic.description}}
+    {{encodeMyString forum.description}}
   </div>
   <div class="col-sm-2">
     <dl>
-      <dt class="stats_number">456</dt>
+      <dt class="stats_number">{{forum.numTopics}}</dt>
       <dd class="stats_type">topics</dd>
     </dl>
     <dl>
-      <dt class="stats_number">647.602</dt>
+      <dt class="stats_number">{{forum.numPosts}}</dt>
       <dd class="stats_type">posts</dd>
     </dl>
   </div>
