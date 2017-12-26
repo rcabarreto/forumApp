@@ -8159,6 +8159,10 @@ a {
   margin-top: 20px;
   margin-bottom: 10px; }
 
+.vertical-align {
+  display: flex;
+  align-items: center; }
+
 .colorgraph {
   height: 5px;
   border-top: 0;
@@ -8325,6 +8329,16 @@ h5 {
   padding-top: 0; }
 
 .row.topic {
+  border-top: solid 1px #CCCCCC;
+  margin-top: 20px;
+  padding-top: 20px; }
+
+.row.forum:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0; }
+
+.row.forum {
   border-top: solid 1px #CCCCCC;
   margin-top: 20px;
   padding-top: 20px; }

@@ -38,8 +38,26 @@
 
 
 
-{{#if forum.subForum}}
-  <h2>we have subforums</h2>
+{{#if forum.subForums}}
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Sub Forums</h3>
+        </div>
+        <div class="panel-body">
+
+          {{#each forum.subForums as |subforum| }}
+            {{>forum forum=subforum}}
+          {{/each}}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 {{else}}
   <h2>we don't have subforums</h2>
 {{/if}}

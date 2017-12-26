@@ -12,6 +12,18 @@
 }
 
 
+.row.forum:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.row.forum {
+  border-top: solid 1px #CCCCCC;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
 
 .row.forum-toolbar {
   button.btn.btn-primary {
