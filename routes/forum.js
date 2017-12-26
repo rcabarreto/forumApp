@@ -12,13 +12,30 @@ module.exports = (db, middleware) => {
   /* send to home page */
   router.get('/', (req, res, next) => {
 
-    db.forum.findAll({ where: { visibility: 'public' },
+
+    db.sequelize.query('SELECT forum.*, (SELECT count(*) FROM topics topic where topic.forumId = forum.id) as numTopics, (SELECT count(*) FROM topics topic2 inner join posts post on post.topicId = topic2.id where topic2.forumId = forum.id) as numPosts FROM forums forum',
+      { type: db.sequelize.QueryTypes.SELECT }
+    ).then(forums => {
+      console.log(forums);
+    });
+
+
+    db.forum.findAll({
+      where: { visibility: 'public' },
       include: [
-        { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
-        { model: db.topic, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }
+        {
+          model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile']
+        },
+        {
+          model: db.topic,
+          include: [
+            { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
+            { model: db.post, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }
+          ]
+        }
       ],
       order: [
-        [{ model: db.topic }, 'createdAt', 'DESC']
+        [{ model: db.topic }, 'updatedAt', 'DESC']
       ]
     }).then(forums => {
       console.log(JSON.stringify(forums));
