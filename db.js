@@ -23,8 +23,8 @@ db.post = sequelize.import(__dirname + '/models/post.js');
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.forum.belongsTo(db.forum, { foreignKey: 'parentId' });
-db.forum.hasMany(db.forum, { foreignKey: 'parentId' });
+db.forum.belongsTo(db.forum, { as: 'parentForum', foreignKey: 'parentId' });
+db.forum.hasMany(db.forum, { as: 'subForums', foreignKey: 'parentId' });
 
 db.topic.belongsTo(db.forum);
 db.forum.hasMany(db.topic);
@@ -32,6 +32,9 @@ db.forum.hasMany(db.topic);
 db.post.belongsTo(db.topic);
 db.topic.hasMany(db.post);
 
+
+db.post.belongsTo(db.user);
+db.user.hasMany(db.post);
 
 db.topic.belongsTo(db.user);
 db.user.hasMany(db.topic);

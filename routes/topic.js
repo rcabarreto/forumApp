@@ -25,17 +25,17 @@ module.exports = (db, middleware) => {
   });
 
 
-  router.get('/:forumId', (req, res, next) => {
+  router.get('/:topicId', (req, res, next) => {
 
-    let forumId = parseInt(req.params.forumId, 10);
+    let topicId = parseInt(req.params.topicId, 10);
 
-    db.forum.findById(forumId, { include:
-        [{ model: db.topic, required: false, where: { featured: false }, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }]
-    }).then(forum => {
+    db.topic.findById(topicId, { include:
+        [{ model: db.user }, { model: db.post, required: false, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }]
+    }).then(topic => {
 
-      console.log(JSON.stringify(forum));
+      console.log(JSON.stringify(topic));
 
-      res.render('forum', { forum: forum });
+      res.render('topic', { topic: topic });
 
     });
 

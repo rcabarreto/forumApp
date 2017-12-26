@@ -97,6 +97,8 @@ app.use(function(err, req, res, next) {
 db.sequelize.sync().then(function() {
   // {force:true}
 
+
+
 });
 
 module.exports = app;
