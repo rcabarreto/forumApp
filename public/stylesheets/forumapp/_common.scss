@@ -13,7 +13,6 @@ a{
   color: #034861;
 }
 
-
 .page-header button.btn.pull-right {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -22,4 +21,8 @@ a{
 .vertical-align {
   display: flex;
   align-items: center;
+}
+
+img.img-responsive.img-circle.gravatar {
+  width: 50px;
 }

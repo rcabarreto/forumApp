@@ -11,7 +11,20 @@ module.exports = (db, middleware) => {
 
   /* send to home page */
   router.get('/', (req, res, next) => {
-    res.render('forums', { title: 'Express forum' });
+
+    db.forum.findAll({ where: { visibility: 'public' },
+      include: [
+        { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
+        { model: db.topic, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }
+      ],
+      order: [
+        [{ model: db.topic }, 'createdAt', 'DESC']
+      ]
+    }).then(forums => {
+      console.log(JSON.stringify(forums));
+      res.render('forums', { forums: forums });
+    });
+
   });
 
 
@@ -35,7 +48,11 @@ module.exports = (db, middleware) => {
     let forumId = parseInt(req.params.forumId, 10);
 
     db.forum.findById(forumId, { include:
-        [ { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }, { model: db.forum, as: 'subForums', required: false, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }, { model: db.topic, required: false, where: { featured: false }, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] } ]
+        [
+          { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
+          { model: db.forum, as: 'subForums', required: false, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] },
+          { model: db.topic, required: false, where: { featured: false }, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }
+        ]
     }).then(forum => {
 
       console.log(JSON.stringify(forum));

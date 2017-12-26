@@ -37,6 +37,8 @@
 
 
 
+
+{{#if featuredForums}}
 <div class="row">
   <div class="col-sm-12">
 
@@ -46,33 +48,36 @@
       </div>
       <div class="panel-body">
 
-        {{>forum}}
+
 
       </div>
     </div>
 
   </div>
 </div>
+{{/if}}
 
 
 
+{{#if forums}}
 
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Forums</h3>
+        </div>
+        <div class="panel-body">
 
+          {{#each forums as |forum|}}
+            {{>forum forum=forum}}
+          {{/each}}
 
-<div class="row">
-  <div class="col-sm-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Forums</h3>
+        </div>
       </div>
-      <div class="panel-body">
 
-        {{>forum}}
-
-        {{>forum}}
-
-      </div>
     </div>
-
   </div>
-</div>
+
+
+{{/if}}

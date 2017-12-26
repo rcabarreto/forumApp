@@ -8163,6 +8163,9 @@ a {
   display: flex;
   align-items: center; }
 
+img.img-responsive.img-circle.gravatar {
+  width: 50px; }
+
 .colorgraph {
   height: 5px;
   border-top: 0;
