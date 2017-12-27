@@ -17,17 +17,10 @@ module.exports = (db, middleware) => {
       include: [
         {
           model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile']
-        },
-        {
-          model: db.topic,
-          include: [
-            { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
-            { model: db.post, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }
-          ]
         }
       ],
       order: [
-        [{ model: db.topic }, 'updatedAt', 'DESC']
+        ['updatedAt', 'DESC']
       ]
     }).then(forums => {
       console.log(JSON.stringify(forums));

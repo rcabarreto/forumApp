@@ -1,0 +1,23 @@
+
+.row.topic:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.row.topic {
+  border-top: solid 1px #CCCCCC;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+
+div.topic {
+  img.img-responsive.img-circle.gravatar{
+    margin-right: 20px;
+  }
+}
+
+div.compose-message-box {
+  background: #E4E6EA;
+}

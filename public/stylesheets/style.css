@@ -8326,16 +8326,6 @@ h5 {
 .meta a:hover {
   color: rgba(0, 0, 0, 0.87); }
 
-.row.topic:first-child {
-  border-top: none;
-  margin-top: 0;
-  padding-top: 0; }
-
-.row.topic {
-  border-top: solid 1px #CCCCCC;
-  margin-top: 20px;
-  padding-top: 20px; }
-
 .row.forum:first-child {
   border-top: none;
   margin-top: 0;
@@ -8359,6 +8349,22 @@ dt.stats_number {
 
 dd.stats_type {
   color: #8d9aa6; }
+
+.row.topic:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0; }
+
+.row.topic {
+  border-top: solid 1px #CCCCCC;
+  margin-top: 20px;
+  padding-top: 20px; }
+
+div.topic img.img-responsive.img-circle.gravatar {
+  margin-right: 20px; }
+
+div.compose-message-box {
+  background: #E4E6EA; }
 
 .stepper .nav-tabs {
   position: relative; }

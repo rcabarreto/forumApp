@@ -52,6 +52,9 @@ module.exports = (sequelize, DataTypes) => {
         this.setDataValue('salt', salt);
         this.setDataValue('password_hash', hashedPassword);
       }
+    },
+    numPosts: {
+      type: DataTypes.VIRTUAL(DataTypes.INTEGER, [[sequelize.literal('(SELECT COUNT(`posts`.`id`) FROM `posts` WHERE `posts`.`userId` = `user`.`id`)'), 'numPosts']])
     }
   }, {
     hooks: {

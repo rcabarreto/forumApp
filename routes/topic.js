@@ -29,8 +29,11 @@ module.exports = (db, middleware) => {
 
     let topicId = parseInt(req.params.topicId, 10);
 
-    db.topic.findById(topicId, { include:
-        [{ model: db.user }, { model: db.post, required: false, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }]
+    db.topic.findById(topicId, {
+      include: [
+        { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile', 'createdAt', 'updatedAt', 'numPosts'] },
+        { model: db.forum },
+        { model: db.post, required: false, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile', 'createdAt', 'updatedAt', 'numPosts'] }] }]
     }).then(topic => {
 
       console.log(JSON.stringify(topic));

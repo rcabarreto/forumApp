@@ -1,0 +1,23 @@
+
+<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+  <div class="card">
+    <img class="card-img-top" src="/images/forum.png">
+    <div class="card-block">
+      <h4 class="card-title">{{forum.title}}</h4>
+      <div class="card-text">
+        {{encodeMyString forum.description}}
+      </div>
+    </div>
+    <div class="card-footer">
+      <small>Last updated 3 mins ago</small>
+      <span class="pull-right">Topics <span class="badge">42</span></span>
+    </div>
+    <div class="card-footer">
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+          <a class="btn btn-info" href="/forum/{{forum.id}}" role="button">View forum »</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

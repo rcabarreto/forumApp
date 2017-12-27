@@ -26,6 +26,7 @@ const user = require('./routes/user')(db, middleware);
 const account = require('./routes/account')(db, middleware);
 const forum = require('./routes/forum')(db, middleware);
 const topic = require('./routes/topic')(db, middleware);
+const post = require('./routes/post')(db, middleware);
 
 const app = express();
 
@@ -73,7 +74,7 @@ app.use('/user', user);
 app.use('/account', account);
 app.use('/forum', forum);
 app.use('/topic', topic);
-
+app.use('/post', post);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
