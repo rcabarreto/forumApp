@@ -49,5 +49,30 @@ module.exports = (sequelize, DataTypes) => {
   });
 
 
+  // retrieves all root forums
+  forum.findAllForums = (forumId=null) => {
+    return new Promise((resolve, reject) => {
+
+      sequelize.models.forum.findAll({
+        attributes: { include: ['numTopics', 'numPosts'] },
+        where: { parentId: null },
+        include: [
+          { model: sequelize.models.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
+          { model: sequelize.models.forum, as: 'subForums', required: false, include: [{ model: sequelize.models.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }
+        ],
+        order: [
+          ['updatedAt', 'DESC']
+        ]
+      }).then(forums => {
+        resolve(forums);
+      }, err => {
+        reject(err);
+      });
+
+
+    });
+  };
+
+
   return forum;
 };

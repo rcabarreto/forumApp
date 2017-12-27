@@ -11,18 +11,24 @@ module.exports = (db, middleware) => {
   /* send to home page */
   router.get('/', (req, res, next) => {
 
-    db.forum.findAll({
-      attributes: { include: ['numTopics', 'numPosts'] },
-      where: { visibility: 'public' },
-      include: [
-        {
-          model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile']
-        }
-      ],
-      order: [
-        ['updatedAt', 'DESC']
-      ]
-    }).then(forums => {
+    // db.forum.findAll({
+    //   attributes: { include: ['numTopics', 'numPosts'] },
+    //   where: { visibility: 'public' },
+    //   include: [
+    //     {
+    //       model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile']
+    //     }
+    //   ],
+    //   order: [
+    //     ['updatedAt', 'DESC']
+    //   ]
+    // }).then(forums => {
+    //   console.log(JSON.stringify(forums));
+    //   res.render('forums', { forums: forums });
+    // });
+
+
+    db.forum.findAllForums().then(forums => {
       console.log(JSON.stringify(forums));
       res.render('forums', { forums: forums });
     });
@@ -52,19 +58,18 @@ module.exports = (db, middleware) => {
     db.forum.findById(forumId, { include:
         [
           { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
-          { model: db.forum, as: 'subForums', required: false, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] },
-          { model: db.topic, required: false, where: { featured: false }, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }
+          { model: db.forum, as: 'subForums', required: false, attributes: { include: ['numTopics', 'numPosts'] }, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] },
+          { model: db.topic, as: 'featuredTopics', required: false, where: { featured: true }, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] },
+          { model: db.topic, as: 'topics', required: false, where: { featured: false }, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }
         ]
     }).then(forum => {
-
       console.log(JSON.stringify(forum));
-
       res.render('forum', { forum: forum });
-
     });
 
-  });
 
+
+  });
 
 
   return router;

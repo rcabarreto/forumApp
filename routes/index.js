@@ -11,9 +11,13 @@ module.exports = (db, middleware) => {
   /* GET home page. */
   router.get('/', middleware.checkInstall, (req, res, next) => {
 
-    db.forum.findAll().then(forums => {
+
+
+    db.forum.findAllForums().then(forums => {
+      console.log(JSON.stringify(forums));
       res.render('index', { forums: forums });
     });
+
 
   });
 

@@ -32,7 +32,12 @@
 
   </div>
   <div class="col-xs-4">
-    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#newTopicModal" data-title="New topic for {{forum.title}}" data-forum-id="{{forum.id}}">New Topic <span class="glyphicon glyphicon-plus"></span></button>
+
+    <span class="pull-right">
+      <button class="btn btn-default" type="button" data-toggle="modal" data-target="#newForumModal" data-title="New Subforum for {{forum.title}}" data-forum-id="{{forum.id}}">New Subforum <span class="glyphicon glyphicon-plus"></span></button>
+      <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#newTopicModal" data-title="New Topic for {{forum.title}}" data-forum-id="{{forum.id}}">New Topic <span class="glyphicon glyphicon-plus"></span></button>
+    </span>
+
   </div>
 </div>
 
@@ -47,19 +52,14 @@
           <h3 class="panel-title">Sub Forums</h3>
         </div>
         <div class="panel-body">
-
           {{#each forum.subForums as |subforum| }}
             {{>forum forum=subforum}}
           {{/each}}
-
         </div>
       </div>
-
     </div>
   </div>
 
-{{else}}
-  <h2>we don't have subforums</h2>
 {{/if}}
 
 
@@ -91,7 +91,7 @@
 <div class="row">
 
   <div class="col-sm-12">
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">Topics</h3>
       </div>

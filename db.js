@@ -27,7 +27,9 @@ db.forum.belongsTo(db.forum, { as: 'parentForum', foreignKey: 'parentId' });
 db.forum.hasMany(db.forum, { as: 'subForums', foreignKey: 'parentId' });
 
 db.topic.belongsTo(db.forum);
-db.forum.hasMany(db.topic);
+
+db.forum.hasMany(db.topic, { as: 'topics' });
+db.forum.hasMany(db.topic, { as: 'featuredTopics' });
 
 db.post.belongsTo(db.topic);
 db.topic.hasMany(db.post);
