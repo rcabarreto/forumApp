@@ -13,14 +13,49 @@ module.exports = (db, middleware) => {
   router.post('/new', (req, res, next) => {
 
     let userId = req.user.id;
-    let topic = _.pick(req.body, 'title', 'description', 'forumId');
 
-    topic.userId = userId;
+    let title = req.body.title;
+    let description = req.body.description;
+    let forumId = parseInt(req.body.forumId, 10);
 
-    db.topic.create(topic).then(topic => {
-      console.log(JSON.stringify(topic));
-      res.redirect('/forum/'+ topic.forumId);
+
+    let topic = {
+      title: title,
+      type: 'public',
+      featured: false,
+      userId: userId
+    };
+
+    let post = {
+      title: title,
+      message: description,
+      userId: userId
+    };
+
+
+    db.forum.findById(forumId).then(forum => {
+
+      forum.createTopic(topic).then(topic => {
+
+        console.log('New Topic created: '+ JSON.stringify(topic));
+
+        topic.createPost(post).then(post => {
+
+          console.log('New Post created: '+ JSON.stringify(post));
+
+          topic.setLastPost(post);
+          forum.setLastPost(post);
+
+          res.redirect('/forum/'+ forum.id);
+
+        });
+
+
+      });
+
+
     });
+
 
   });
 
@@ -36,7 +71,8 @@ module.exports = (db, middleware) => {
         { model: db.post, required: false, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile', 'createdAt', 'updatedAt', 'numPosts'] }] }]
     }).then(topic => {
 
-      console.log(JSON.stringify(topic));
+      // increment the topic views
+      topic.increment(['topicViews'], { by: 1 });
 
       res.render('topic', { topic: topic });
 

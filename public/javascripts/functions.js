@@ -1,8 +1,20 @@
 
 
 tinymce.init({
-  selector: 'textarea',
-  height: 260,
+  selector: '.newPostMessage',
+  height: 250,
+  theme: 'modern',
+  plugins: 'print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
+  toolbar1: 'formatselect | bold italic underline strikethrough forecolor | link unlink | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat',
+  toolbar2: "fontselect fontsizeselect | cut copy paste | undo redo | table | hr | subscript superscript | image media code",
+  menubar: false,
+  image_advtab: true
+});
+
+
+tinymce.init({
+  selector: '.newTopicDescription',
+  height: 250,
   theme: 'modern',
   plugins: 'print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
   toolbar1: 'formatselect | bold italic underline strikethrough forecolor backcolor | link unlink | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat | preview',
@@ -11,6 +23,17 @@ tinymce.init({
   image_advtab: true
 });
 
+
+tinymce.init({
+  selector: '.newForumDescription',
+  height: 150,
+  theme: 'modern',
+  plugins: 'print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
+  toolbar1: 'formatselect | bold italic underline strikethrough forecolor backcolor | link unlink | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat | preview',
+  toolbar2: "fontselect fontsizeselect | cut copy paste | undo redo | table | hr | subscript superscript | image media code",
+  menubar: false,
+  image_advtab: true
+});
 
 
 

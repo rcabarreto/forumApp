@@ -1,4 +1,11 @@
 
+<ol class="breadcrumb">
+  <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+  <li><a href="/forum">Forums</a></li>
+  <li class="active">Some forum</li>
+</ol>
+
+
 
 <div class="page-header">
   <h1>{{forum.title}}</h1>
@@ -33,10 +40,14 @@
   </div>
   <div class="col-xs-4">
 
-    <span class="pull-right">
-      <button class="btn btn-default" type="button" data-toggle="modal" data-target="#newForumModal" data-title="New Subforum for {{forum.title}}" data-forum-id="{{forum.id}}">New Subforum <span class="glyphicon glyphicon-plus"></span></button>
-      <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#newTopicModal" data-title="New Topic for {{forum.title}}" data-forum-id="{{forum.id}}">New Topic <span class="glyphicon glyphicon-plus"></span></button>
-    </span>
+    {{#if @root.data.user}}
+      <span class="pull-right">
+        {{#ifAdmin @root.data.user.profile}}
+          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#newForumModal" data-title="New Subforum for {{forum.title}}" data-forum-id="{{forum.id}}">New Subforum <span class="glyphicon glyphicon-plus"></span></button>
+        {{/ifAdmin}}
+        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#newTopicModal" data-title="New Topic for {{forum.title}}" data-forum-id="{{forum.id}}">New Topic <span class="glyphicon glyphicon-plus"></span></button>
+      </span>
+    {{/if}}
 
   </div>
 </div>

@@ -19,11 +19,23 @@
   </div>
   <div class="col-sm-4">
 
-    {{#if topics}}
-      <img src="{{getGravatarUrl topics.0.user.email}}" alt="image" class="img-responsive img-circle gravatar pull-left">
-      <p>{{topics.0.title}}</p>
-      {{encodeMyString topics.0.description}}
-      <p>{{topics.0.createdAt}}</p>
+    {{#if LastPost}}
+      {{#with LastPost}}
+
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img src="{{getGravatarUrl user.email}}" alt="image" class="media-object img-circle gravatar">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading"><a href="/topic/{{topicId}}#message-{{id}}">{{title}}</a> <br><small>by {{user.display_name}}</small> </h4>
+            <small>{{formatRelative createdAt}}</small>
+          </div>
+        </div>
+
+      {{/with}}
+
     {{/if}}
 
   </div>

@@ -13,12 +13,12 @@
       <span class="pull-right">Posts <span class="badge">{{forum.numPosts}}</span></span>
     </div>
     <div class="card-footer">
-      <small class="pull-left">Last updated 3 mins ago</small>
+      <small class="">Last updated {{formatRelative forum.updatedAt}}</small>
     </div>
     <div class="card-footer">
       <div class="btn-group btn-group-justified" role="group" aria-label="...">
         <div class="btn-group" role="group">
-          <a class="btn btn-info" href="/forum/{{forum.id}}" role="button">View forum »</a>
+          <a class="btn btn-primary" href="/forum/{{forum.id}}" role="button">View forum »</a>
         </div>
       </div>
     </div>

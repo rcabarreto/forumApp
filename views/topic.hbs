@@ -1,12 +1,57 @@
 
+
+<ol class="breadcrumb">
+  <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+  <li><a href="/forum">Forums</a></li>
+  <li><a href="/forum/1">Some forum</a></li>
+  <li class="active">Another topic</li>
+</ol>
+
+
+
 <div class="page-header topic">
   <img src="{{getGravatarUrl topic.user.email}}" alt="image" class="img-responsive img-circle gravatar pull-left">
   <h3>{{topic.title}}<br><small>by {{topic.user.display_name}}, {{formatDate topic.createdAt day="numeric" month="long" year="numeric"}} in {{topic.forum.title}}</small></h3>
-  {{encodeMyString topic.description}}
 
   {{formatRelative topic.createdAt}}
 
 </div>
+
+
+<div class="row topic-toolbar">
+  <div class="col-xs-8">
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        <li>
+          <a href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li>
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+  </div>
+  <div class="col-xs-4">
+
+    {{#if @root.data.user}}
+      <span class="pull-right">
+        <a href="#newMessage" class="btn btn-primary">New Message <span class="glyphicon glyphicon-plus"></span></a>
+      </span>
+    {{/if}}
+
+  </div>
+
+</div>
+
+
 
 
 <div class="row">
@@ -16,55 +61,31 @@
 
       {{#each topic.posts as |post|}}
 
-        <div class="panel panel-default">
-          <div class="panel-body">
-              <div class="col-sm-2">
-                <h3>{{post.user.display_name}}</h3>
-                <img src="{{getGravatarUrl post.user.email}}" alt="image" class="img-responsive img-circle gravatar">
-                Perfil
-                {{post.user.numPosts}} posts
-                since {{formatDate post.user.createdAt day="numeric" month="long" year="numeric"}}
-              </div>
-
-              <div class="col-sm-10">
-                {{encodeMyString post.message}}
-              </div>
-          </div>
-        </div>
+        {{>post post=post}}
 
       {{/each}}
-
-    {{else}}
-
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="col-sm-12">
-            <h4>No messages so far!</h4>
-          </div>
-        </div>
-      </div>
 
     {{/if}}
 
 
+    {{#if @root.data.user}}
+      <div class="panel panel-default compose-message-box" id="newMessage">
+        <div class="panel-body">
+          <div class="col-sm-1">
+            <img src="{{getGravatarUrl @root.data.user.email}}" alt="image" class="img-responsive img-circle gravatar pull-left">
+          </div>
 
-    <div class="panel panel-default compose-message-box">
-      <div class="panel-body">
-        <div class="col-sm-1">
-          <img src="{{getGravatarUrl @root.data.user.email}}" alt="image" class="img-responsive img-circle gravatar pull-left">
-        </div>
-
-        <div class="col-sm-11">
-          <form action="/post/new" method="post">
-            <input type="hidden" name="topicId" value="{{topic.id}}">
-            <textarea name="message"></textarea>
-            <br>
-            <input type="submit" value="responder" class="btn btn-primary btn-lg pull-right">
-          </form>
+          <div class="col-sm-11">
+            <form action="/post/new" method="post">
+              <input type="hidden" name="topicId" value="{{topic.id}}">
+              <textarea name="message" class="newPostMessage"></textarea>
+              <br>
+              <input type="submit" value="responder" class="btn btn-primary btn-lg pull-right">
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-
+    {{/if}}
 
 
   </div>

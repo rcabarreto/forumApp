@@ -42,10 +42,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.VIRTUAL(DataTypes.INTEGER, [[sequelize.literal('(SELECT COUNT(`posts`.`id`) FROM `topics` INNER JOIN `posts` ON `posts`.`topicId` = `topics`.`id` WHERE `topics`.`forumId` = `forum`.`id`)'), 'numPosts']])
     }
 
-
-    // SELECT `posts`.* FROM `topics` INNER JOIN `posts` ON `topics`.`id` = `posts`.`topicId` WHERE `topics`.`forumId` = 2 ORDER BY `posts`.`updatedAt` DESC LIMIT 1
-
-
   });
 
 
@@ -54,11 +50,12 @@ module.exports = (sequelize, DataTypes) => {
     return new Promise((resolve, reject) => {
 
       sequelize.models.forum.findAll({
-        attributes: { include: ['numTopics', 'numPosts'] },
+        attributes: { include: ['numTopics', 'numPosts', 'lastPostId'] },
         where: { parentId: null },
         include: [
           { model: sequelize.models.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
-          { model: sequelize.models.forum, as: 'subForums', required: false, include: [{ model: sequelize.models.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }
+          { model: sequelize.models.forum, as: 'subForums', required: false, include: [{ model: sequelize.models.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] },
+          { model: sequelize.models.post, as: 'LastPost', include: [{ model: sequelize.models.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }
         ],
         order: [
           ['updatedAt', 'DESC']

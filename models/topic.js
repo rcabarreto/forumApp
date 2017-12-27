@@ -6,10 +6,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(60),
       allowNull: true
     },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
     type: {
       type: DataTypes.ENUM,
       allowNull: false,
@@ -25,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
+    },
+    topicViews: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
     }
   });
 

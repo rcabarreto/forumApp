@@ -26,6 +26,9 @@ db.Sequelize = Sequelize;
 db.forum.belongsTo(db.forum, { as: 'parentForum', foreignKey: 'parentId' });
 db.forum.hasMany(db.forum, { as: 'subForums', foreignKey: 'parentId' });
 
+db.forum.belongsTo(db.post, { as: 'LastPost', constraints: false });
+db.topic.belongsTo(db.post, { as: 'LastPost', constraints: false });
+
 db.topic.belongsTo(db.forum);
 
 db.forum.hasMany(db.topic, { as: 'topics' });
