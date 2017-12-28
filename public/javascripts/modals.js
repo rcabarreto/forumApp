@@ -5,9 +5,12 @@ $('#newForumModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget);
 
   var modalTitle = button.data('title');
+  var forumId = button.data('forum-id');
+
   var modal = $(this)
 
   modal.find('.modal-title').text(modalTitle);
+  modal.find('#forumId').val(forumId);
 
 });
 

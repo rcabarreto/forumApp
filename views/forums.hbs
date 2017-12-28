@@ -39,9 +39,9 @@
 
     {{#if @root.data.user}}
       <span class="pull-right">
-        {{#ifAdmin @root.data.user.profile}}
+        {{#ifCond @root.data.user.profile 'admin'}}
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newForumModal" data-title="New Forum">New Forum <span class="glyphicon glyphicon-plus"></span></button>
-        {{/ifAdmin}}
+        {{/ifCond}}
       </span>
     {{/if}}
 
@@ -93,5 +93,6 @@
     </div>
   </div>
 
-
+{{else}}
+  <h3>No forums created yet</h3>
 {{/if}}

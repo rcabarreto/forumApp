@@ -39,8 +39,12 @@ module.exports = (db, middleware) => {
 
     let userId = req.user.id;
     let forum = _.pick(req.body, 'title', 'description', 'visibility', 'featured', 'allowanonymous');
+    let forumId = parseInt(req.body.forumId, 10);
 
     forum.userId = userId;
+
+    if (forumId)
+      forum.parentId = forumId;
 
     db.forum.create(forum).then(forum => {
       console.log(JSON.stringify(forum));
