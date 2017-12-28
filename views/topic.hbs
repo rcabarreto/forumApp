@@ -8,13 +8,10 @@
 </ol>
 
 
-
 <div class="page-header topic">
   <img src="{{getGravatarUrl topic.user.email}}" alt="image" class="img-responsive img-circle gravatar pull-left">
   <h3>{{topic.title}}<br><small>by {{topic.user.display_name}}, {{formatDate topic.createdAt day="numeric" month="long" year="numeric"}} in {{topic.forum.title}}</small></h3>
-
   {{formatRelative topic.createdAt}}
-
 </div>
 
 
@@ -53,16 +50,13 @@
 
 
 
-
 <div class="row">
   <div class="col-sm-12">
 
     {{#if topic.posts}}
 
       {{#each topic.posts as |post|}}
-
         {{>post post=post}}
-
       {{/each}}
 
     {{/if}}
@@ -71,6 +65,7 @@
     {{#if @root.data.user}}
       <div class="panel panel-default compose-message-box" id="newMessage">
         <div class="panel-body">
+
           <div class="col-sm-1">
             <img src="{{getGravatarUrl @root.data.user.email}}" alt="image" class="img-responsive img-circle gravatar pull-left">
           </div>
@@ -83,6 +78,7 @@
               <input type="submit" value="responder" class="btn btn-primary btn-lg pull-right">
             </form>
           </div>
+
         </div>
       </div>
     {{/if}}

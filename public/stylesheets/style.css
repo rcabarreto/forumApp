@@ -8363,6 +8363,9 @@ div.topic img.img-responsive.img-circle.gravatar {
 div.compose-message-box {
   background: #E4E6EA; }
 
+div.post .post-header {
+  height: 30px; }
+
 .stepper .nav-tabs {
   position: relative; }
 

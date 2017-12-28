@@ -26,8 +26,6 @@
         <li><a href="#">1</a></li>
         <li><a href="#">2</a></li>
         <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
         <li>
           <a href="#" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
@@ -76,45 +74,47 @@
 
 
 {{#if forum.featuredTopics}}
-<div class="row">
+  <div class="row">
 
-  <div class="col-sm-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Featured topics</h3>
-      </div>
-      <div class="panel-body">
+    <div class="col-sm-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Featured topics</h3>
+        </div>
+        <div class="panel-body">
 
-        {{#each forum.featuredTopics as |featuredTopic|}}
-          {{>topic topic=featuredTopic}}
-        {{/each}}
+          {{#each forum.featuredTopics as |featuredTopic|}}
+            {{>topic topic=featuredTopic}}
+          {{/each}}
 
+        </div>
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
 {{/if}}
 
 
 
 {{#if forum.topics}}
-<div class="row">
+  <div class="row">
 
-  <div class="col-sm-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Topics</h3>
-      </div>
-      <div class="panel-body">
+    <div class="col-sm-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Topics</h3>
+        </div>
+        <div class="panel-body">
 
-        {{#each forum.topics as |topic|}}
-          {{>topic topic=topic}}
-        {{/each}}
+          {{#each forum.topics as |topic|}}
+            {{>topic topic=topic}}
+          {{/each}}
 
+        </div>
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
+{{else}}
+
 {{/if}}

@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
     return new Promise((resolve, reject) => {
 
       sequelize.models.forum.findAll({
-        attributes: { include: ['numTopics', 'numPosts', 'lastPostId'] },
+        attributes: { include: ['numTopics', 'numPosts'] },
         where: { parentId: null },
         include: [
           { model: sequelize.models.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
