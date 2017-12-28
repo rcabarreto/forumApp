@@ -1,0 +1,33 @@
+<div class="row subforum vertical-align">
+  <div class="col-sm-6">
+    <h4><a href="/topic/{{forum.id}}">{{forum.title}}</a><br><small>by {{forum.user.display_name}} {{formatRelative forum.createdAt}}</small></h4>
+
+  </div>
+  <div class="col-sm-2">
+
+    <p>{{forum.numTopics}} topics</p>
+    <p>{{forum.numPosts}} posts</p>
+
+  </div>
+  <div class="col-sm-4">
+
+    {{#if LastPost}}
+      {{#with LastPost}}
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img src="{{getGravatarUrl user.email}}" alt="image" class="media-object img-circle gravatar">
+            </a>
+          </div>
+          <div class="media-body">
+
+            <h4 class="media-heading"><a href="/forum/{{topicId}}#message-{{id}}">{{truncateString message}}</a> <br><small>by {{user.display_name}}</small> </h4>
+            <small>{{formatRelative createdAt}}</small>
+
+          </div>
+        </div>
+      {{/with}}
+    {{/if}}
+
+  </div>
+</div>
