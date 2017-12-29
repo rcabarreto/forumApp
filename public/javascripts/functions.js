@@ -1,18 +1,4 @@
 
-
-tinymce.init({
-  selector: '.newPostMessage',
-  height: 250,
-  theme: 'modern',
-  plugins: 'print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
-  toolbar1: 'formatselect | bold italic underline strikethrough forecolor | link unlink | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat',
-  toolbar2: "fontselect fontsizeselect | cut copy paste | undo redo | table | hr | subscript superscript | image media code",
-  menubar: false,
-  content_css : '/stylesheets/customTinymceStyle.css',
-  image_advtab: true
-});
-
-
 tinymce.init({
   selector: '.newTopicDescription',
   height: 250,
@@ -25,7 +11,6 @@ tinymce.init({
   image_advtab: true
 });
 
-
 tinymce.init({
   selector: '.newForumDescription',
   height: 150,
@@ -37,7 +22,6 @@ tinymce.init({
   content_css : '/stylesheets/customTinymceStyle.css',
   image_advtab: true
 });
-
 
 (function($) {
   $.fn.answerThisMessage = function() {
@@ -61,7 +45,6 @@ tinymce.init({
 }( jQuery ));
 
 
-
 function deletePost(postId) {
 
   $('#confirmDeleteModal').modal('hide');
@@ -79,9 +62,7 @@ function deletePost(postId) {
     }
   });
 
-
 }
-
 
 
 $('.answerMessage').answerThisMessage();
