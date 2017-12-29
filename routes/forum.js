@@ -54,7 +54,11 @@ module.exports = (db, middleware) => {
             ]
           }
         ],
-      order: [ [{model: db.topic, as: 'topics'}, 'featured', 'DESC'], [{model: db.topic, as: 'topics'}, 'updatedAt', 'DESC'] ],
+      order: [
+        [{model: db.forum, as: 'subForums'}, 'featured', 'DESC'],
+        [{model: db.topic, as: 'topics'}, 'featured', 'DESC'],
+        [{model: db.topic, as: 'topics'}, 'updatedAt', 'DESC']
+      ],
     }).then(forum => {
       console.log(JSON.stringify(forum));
       res.render('forum', { forum: forum });
