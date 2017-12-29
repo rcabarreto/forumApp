@@ -5,7 +5,12 @@
   </div>
   <div class="col-sm-2">
 
-    <p>{{topic.topicViews}} answers</p>
+    {{#ifCond topic.featured true}}
+      <p>{{topic.numPostsFeat}} answers</p>
+    {{else}}
+      <p>{{topic.numPosts}} answers</p>
+    {{/ifCond}}
+
     <p>{{topic.topicViews}} views</p>
 
   </div>

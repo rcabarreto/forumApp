@@ -55,6 +55,8 @@ module.exports = (db, middleware) => {
     }).then(topic => {
       // increment the topic views
       topic.increment(['topicViews'], { by: 1 });
+
+      console.log(JSON.stringify(topic));
       res.render('topic', { topic: topic });
     });
 
