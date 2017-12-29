@@ -28,7 +28,7 @@ $('#newForumModal').on('show.bs.modal', function (event) {
   var modal = $(this)
 
   modal.find('.modal-title').text(modalTitle);
-  modal.find('#forumId').val(forumId);
+  modal.find('#forumForumId').val(forumId);
 
 });
 

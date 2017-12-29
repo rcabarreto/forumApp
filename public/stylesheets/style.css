@@ -8171,6 +8171,9 @@ img.gravatar {
   float: left;
   margin-right: 10px; }
 
+div.page-header span.pull-right {
+  margin-top: 24px; }
+
 .colorgraph {
   height: 5px;
   border-top: 0;
@@ -8363,7 +8366,8 @@ h5 {
     padding-top: 0; }
 
 div.topic img.img-responsive.img-circle.gravatar {
-  margin-right: 20px; }
+  margin-right: 20px;
+  margin-top: 20px; }
 
 div.compose-message-box {
   background: #E4E6EA; }

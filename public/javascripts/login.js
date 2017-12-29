@@ -2,35 +2,9 @@
 $(document).ready(function() {
   // DOM ready
 
-
-
   // Load profile if it exits
   loadProfile();
 });
-
-
-
-
-
-// NODE CODE TO DOWNLOAD FILE
-// var fs = require('fs'),
-//   request = require('request');
-//
-// var download = function(uri, filename, callback){
-//   request.head(uri, function(err, res, body){
-//     console.log('content-type:', res.headers['content-type']);
-//     console.log('content-length:', res.headers['content-length']);
-//
-//     request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-//   });
-// };
-//
-// download('https://www.google.com/images/srpr/logo3w.png', 'google.png', function(){
-//   console.log('done');
-// });
-
-
-
 
 
 $('#loginForm').on('submit', function (e) {
@@ -39,7 +13,7 @@ $('#loginForm').on('submit', function (e) {
   var myForm = $(this);
   var formData = myForm.serializeFormJSON();
 
-  var googleUrl = 'http://picasaweb.google.com/data/entry/api/user/'+formData.email+'?alt=json';
+  // var googleUrl = 'http://picasaweb.google.com/data/entry/api/user/'+formData.email+'?alt=json';
 
   // $.getJSON(googleUrl, function(data) {
   //   console.log(data.entry.gphoto$nickname.$t);
@@ -48,25 +22,17 @@ $('#loginForm').on('submit', function (e) {
   // });
 
 
-
-
-
-  $.getJSON(googleUrl).done(function(data) {
-
-    console.log(data.entry.gphoto$nickname.$t);
-    console.log(data.entry.gphoto$thumbnail.$t);
-    // setLocalStorageData(data.entry.gphoto$nickname.$t, formData.email, data.entry.gphoto$thumbnail.$t)
-
-  }).fail(function () {
-    console.log('Erro!');
-  });
-
-
-
+  // $.getJSON(googleUrl).done(function(data) {
+  //   console.log(data.entry.gphoto$nickname.$t);
+  //   console.log(data.entry.gphoto$thumbnail.$t);
+  //   setLocalStorageData(data.entry.gphoto$nickname.$t, formData.email, data.entry.gphoto$thumbnail.$t)
+  // }).fail(function () {
+  //   console.log('Erro!');
+  // });
 
 
   $.ajax({
-    url: "/api/login",
+    url: "/account/signin",
     type: "POST",
     data: formData,
     success: function(data){
@@ -75,21 +41,18 @@ $('#loginForm').on('submit', function (e) {
     error: function (err) {
       var errorJson = err.responseJSON;
 
-      $('#loginCard').prepend('' +
+      $('#loginForm').prepend('' +
         '<div class="alert alert-danger alert-dismissible" role="alert">' +
         '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-        '<strong>'+errorJson.title+'</strong> '+errorJson.message +
+        '<strong>Oh snap!</strong> Change a few things up and try submitting again' +
         '</div>');
+
 
     }
   });
 
 
 });
-
-
-
-
 
 
 

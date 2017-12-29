@@ -48,12 +48,7 @@ module.exports = (db, middleware) => {
     let body = _.pick(req.body, 'email', 'password');
     let userInstance;
 
-    console.log('FORM: '+ JSON.stringify(body));
-
     db.user.authenticate(body).then(user => {
-
-      console.log('USER: '+ JSON.stringify(user));
-
       let token = user.generateToken('authentication');
       userInstance = user;
       return db.token.create({
@@ -62,10 +57,10 @@ module.exports = (db, middleware) => {
     }).then(tokenInstance => {
       // res.header('Auth', tokenInstance.get('token')).json(userInstance.toPublicJSON());
       res.cookie('vanhackforumapp_login_token', tokenInstance.get('token'));
-      res.redirect('/');
+      res.status(200).json(userInstance.toPublicJSON());
     }).catch(err => {
       console.log('error: ' + err);
-      res.redirect('/');
+      res.status(401).json({"title":"Error!", "message":"Login failed!"});
     });
   });
 
