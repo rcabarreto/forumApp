@@ -28,8 +28,20 @@ module.exports = (db, middleware) => {
 
       })
     });
+  });
 
 
+  router.delete('/:postId', (req, res, next) => {
+    let postId = parseInt(req.params.postId, 10);
+    db.post.findById(postId).then(post => {
+
+      console.log(JSON.stringify(post));
+
+      post.destroy().then(() => {
+        res.status(200).send();
+      })
+
+    })
   });
 
 

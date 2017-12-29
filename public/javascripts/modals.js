@@ -1,5 +1,23 @@
 
 
+
+$('#confirmDeleteModal').on('show.bs.modal', function (event) {
+
+  var button = $(event.relatedTarget);
+
+  var postId = button.data('post-id');
+
+  var modal = $(this)
+
+  modal.find('#confirmDeleteButton').click(function () {
+    deletePost(postId)
+  });
+
+});
+
+
+
+
 $('#newForumModal').on('show.bs.modal', function (event) {
 
   var button = $(event.relatedTarget);

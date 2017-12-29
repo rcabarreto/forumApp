@@ -68,6 +68,7 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(middleware.intl);
+app.use(middleware.loadNavigation);
 
 app.use('/', middleware.verifyAuthentication, index);
 app.use('/user', user);

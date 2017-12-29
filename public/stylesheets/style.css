@@ -1403,7 +1403,7 @@ abbr[data-original-title] {
 blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
-  font-size: 17.5px;
+  font-size: 14px;
   border-left: 5px solid #eeeeee; }
   blockquote p:last-child,
   blockquote ul:last-child,
@@ -8370,6 +8370,34 @@ div.compose-message-box {
 
 div.post .post-header {
   height: 30px; }
+
+div.post .userColumn {
+  text-align: center; }
+  div.post .userColumn img {
+    margin: 0 auto; }
+  div.post .userColumn .posts {
+    margin-top: 10px; }
+  div.post .userColumn .since {
+    font-size: 12px;
+    color: #aeaeae; }
+
+div.post blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  line-height: 20px;
+  border-left: 5px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  border-top: 1px solid #eeeeee;
+  border-right: 1px solid #eeeeee;
+  background: #eeeeee4a; }
+
+div.post div#post-content {
+  min-height: 100px; }
+
+div.post div#post-footer {
+  border-top: 1px solid #eeeeee;
+  padding: 20px 0 0 0;
+  margin-top: 20px; }
 
 .stepper .nav-tabs {
   position: relative; }

@@ -10,8 +10,7 @@
 
 <div class="page-header topic">
   <img src="{{getGravatarUrl topic.user.email}}" alt="image" class="img-responsive img-circle gravatar pull-left">
-  <h3>{{topic.title}}<br><small>by {{topic.user.display_name}}, {{formatDate topic.createdAt day="numeric" month="long" year="numeric"}} in {{topic.forum.title}}</small></h3>
-  {{formatRelative topic.createdAt}}
+  <h3>{{topic.title}}<br><small>by {{topic.user.display_name}}, at {{formatDate topic.createdAt day="numeric" month="long" year="numeric"}} in {{topic.forum.title}}</small></h3>
 </div>
 
 
@@ -40,7 +39,7 @@
 
     {{#if @root.data.user}}
       <span class="pull-right">
-        <a href="#newMessage" class="btn btn-primary">New Message <span class="glyphicon glyphicon-plus"></span></a>
+        <button class="btn btn-primary gotoMessageEditor">New Message <span class="glyphicon glyphicon-plus"></span></button>
       </span>
     {{/if}}
 
@@ -73,9 +72,9 @@
           <div class="col-sm-11">
             <form action="/post/new" method="post">
               <input type="hidden" name="topicId" value="{{topic.id}}">
-              <textarea name="message" class="newPostMessage"></textarea>
+              <textarea name="message" class="newPostMessage" id="newPostMessage"></textarea>
               <br>
-              <input type="submit" value="responder" class="btn btn-primary btn-lg pull-right">
+              <input type="submit" value="Post Message" class="btn btn-primary btn-lg pull-right">
             </form>
           </div>
 

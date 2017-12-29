@@ -34,6 +34,32 @@ module.exports = function (db) {
 
       next();
     },
+    loadNavigation: function (req, res, next) {
+
+      let routePath = req.path;
+
+      console.log('PAth is: '+routePath);
+
+      routePath.indexOf(1);
+      routePath.toLowerCase();
+
+      let route = "/"+routePath.split("/")[1];
+
+      utils.logDebug('Loading page: '+route);
+
+      let templateData = res.locals.data || (res.locals.data = {});
+
+      templateData.currentPageInfo = {
+        pageName: 'Error',
+        windowTitle: 'Contability Error',
+        pageTitle: 'Oops...',
+        pageSubTitle: 'Something went terribly wrong!!'
+      };
+
+
+      next();
+
+    },
     requireAuthentication: (req, res, next) => {
       let token = req.cookies.vanhackforumapp_login_token || '';
 
