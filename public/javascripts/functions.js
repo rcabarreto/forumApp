@@ -8,6 +8,7 @@ tinymce.init({
   toolbar1: 'formatselect | bold italic underline strikethrough forecolor | link unlink | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat',
   toolbar2: "fontselect fontsizeselect | cut copy paste | undo redo | table | hr | subscript superscript | image media code",
   menubar: false,
+  content_css : '/stylesheets/customTinymceStyle.css',
   image_advtab: true
 });
 
@@ -20,6 +21,7 @@ tinymce.init({
   toolbar1: 'formatselect | bold italic underline strikethrough forecolor backcolor | link unlink | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat | preview',
   toolbar2: "fontselect fontsizeselect | cut copy paste | undo redo | table | hr | subscript superscript | image media code",
   menubar: false,
+  content_css : '/stylesheets/customTinymceStyle.css',
   image_advtab: true
 });
 
@@ -32,6 +34,7 @@ tinymce.init({
   toolbar1: 'formatselect | bold italic underline strikethrough forecolor backcolor | link unlink | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat | preview',
   toolbar2: "fontselect fontsizeselect | cut copy paste | undo redo | table | hr | subscript superscript | image media code",
   menubar: false,
+  content_css : '/stylesheets/customTinymceStyle.css',
   image_advtab: true
 });
 
@@ -54,17 +57,6 @@ tinymce.init({
       });
     });
   };
-
-
-  $.fn.deletePostMessage = function() {
-    return this.each(function() {
-      $(this).click(function () {
-        $(this).parent().parent().parent().parent().fadeOut('slow');
-
-      });
-    });
-  };
-
 
 }( jQuery ));
 
