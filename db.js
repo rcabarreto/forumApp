@@ -2,10 +2,34 @@
 
 let Sequelize = require('sequelize');
 let env = process.env.NODE_ENV || 'development';
-let sequelize = new Sequelize(undefined, undefined, undefined, {
-  'dialect': 'sqlite',
-  'storage': __dirname + '/data/forumdata.sqlite'
-});
+let sequelize;
+
+if (env === 'production') {
+
+  let dbconfig = {
+    logging: false,
+    host: process.env.DATABASE_HOST,
+    dialect: 'mysql',
+    dialectOptions: { decimalNumbers: true },
+    port: process.env.DATABASE_PORT,
+    pool: {
+      maxConnections: 10,
+      minConnections: 0,
+      maxIdleTime: 1000
+    }
+  };
+
+  sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USER, process.env.DATABASE_PWD, dbconfig);
+
+} else {
+
+  sequelize = new Sequelize(undefined, undefined, undefined, {
+    'dialect': 'sqlite',
+    'storage': __dirname + '/data/forumdata.sqlite'
+  });
+
+}
+
 
 
 let db = {};
