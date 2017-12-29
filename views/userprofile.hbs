@@ -1,0 +1,51 @@
+
+<ol class="breadcrumb">
+  <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+  <li class="active">User profile</li>
+</ol>
+
+
+<div class="page-header">
+
+  <div class="row">
+    <div class="col-xs-6"><h1>User profile</h1></div>
+    <div class="col-xs-6">
+
+      {{#if @root.data.user}}
+        <span class="pull-right">
+          {{#ifCond @root.data.user.profile 'admin'}}
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newForumModal" data-title="New Forum">New Forum <span class="glyphicon glyphicon-plus"></span></button>
+          {{/ifCond}}
+        </span>
+      {{/if}}
+
+    </div>
+  </div>
+
+</div>
+
+
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <div class="col-sm-3">
+        <img src="{{getGravatarUrl user.email}}&s=300" alt="image" class="img-responsive img-circle">
+      </div>
+
+      <div class="col-sm-9" >
+        <div class="container" >
+          <h2>{{user.first_name}} {{user.last_name}}</h2>
+          <p>an <b>{{user.profile}}</b></p>
+        </div>
+        <hr>
+        <ul class="container details" >
+          <li><p><span class="glyphicon glyphicon-user one" style="width:50px;"></span>{{user.display_name}}</p></li>
+          <li><p><span class="glyphicon glyphicon-envelope one" style="width:50px;"></span>{{user.email}}</p></li>
+        </ul>
+        <hr>
+        <div>Date Of Joining: {{formatDate user.createdAt day="numeric" month="long" year="numeric"}}</div>
+      </div>
+
+    </div>
+  </div>

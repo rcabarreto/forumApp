@@ -92,8 +92,7 @@ module.exports = (db, middleware) => {
 
     db.user.findById(userId).then(user => {
       console.log(JSON.stringify(user.toPublicJSON()));
-
-      res.status(200).json(user.toPublicJSON());
+      res.render('userprofile', { user: user.toPublicJSON() });
     });
   });
 
