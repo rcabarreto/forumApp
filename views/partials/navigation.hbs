@@ -19,18 +19,8 @@
         <li class="active"><a href="/">Home</a></li>
         <li><a href="/forum">Forums</a></li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
+
+
       </ul>
 
 
@@ -39,22 +29,13 @@
       <!--right menu group-->
       <ul class="nav navbar-nav navbar-right">
 
-        {{#ifCond @root.data.user.profile 'admin'}}
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administração <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello, {{@root.data.user.display_name}} <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="/user">Users</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/admin/seguradora">Seguradoras</a></li>
-          </ul>
-        </li>
-        {{/ifCond}}
-
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Olá, {{@root.data.user.display_name}} <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/perfil">Meu Perfil</a></li>
-            <li><a href="/perfil/senha">Alterar Senha</a></li>
+            <li><a href="/account/profile">My Profile</a></li>
+            {{#ifCond @root.data.user.profile 'admin'}}
+            <li><a href="/user">User management</a></li>
+            {{/ifCond}}
             <li role="separator" class="divider"></li>
             <li><a href="/account/signout">SIgn Out</a></li>
           </ul>

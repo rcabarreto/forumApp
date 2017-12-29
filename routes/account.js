@@ -42,10 +42,6 @@ module.exports = (db, middleware) => {
   });
 
 
-  router.get('/signin', function(req, res, next) {
-    let pageInfo = { windowTitle: "Login", pageName: "login" };
-    res.render('signin', { layout: false, pageInfo: pageInfo });
-  });
 
   router.post('/signin', (req, res, next) => {
 
@@ -73,6 +69,8 @@ module.exports = (db, middleware) => {
     });
   });
 
+
+
   router.get('/forgotpassword', function (req,res, next) {
 
     let email = req.body.email;
@@ -89,15 +87,23 @@ module.exports = (db, middleware) => {
       res.status(500).send();
     });
 
-
-
     let pageInfo = { windowTitle: "Esqueci a Senha", pageName: "login" };
     res.render('forgotPassword', { pageInfo: pageInfo });
   });
 
 
+  router.get('/profile', (req, res) => {
+    let userId = req.user.id;
 
-  router.get('/signout', middleware.requireAuthentication, function (req, res, next) {
+    db.user.findById(userId).then(user => {
+      console.log(JSON.stringify(user.toPublicJSON()));
+
+      res.status(200).json(user.toPublicJSON());
+    });
+  });
+
+
+  router.get('/signout', middleware.requireAuthentication, (req, res, next) => {
 
     req.token.destroy().then(function () {
       // res.status(204).send();
