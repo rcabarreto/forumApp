@@ -56,7 +56,7 @@ db.topic.belongsTo(db.post, { as: 'LastPost', constraints: false });
 db.topic.belongsTo(db.forum);
 
 db.forum.hasMany(db.topic, { as: 'topics' });
-db.forum.hasMany(db.topic, { as: 'featuredTopics' });
+// db.forum.hasMany(db.topic, { as: 'featuredTopics' });
 
 db.post.belongsTo(db.topic);
 db.topic.hasMany(db.post);

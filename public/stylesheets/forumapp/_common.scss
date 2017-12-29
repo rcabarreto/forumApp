@@ -13,6 +13,25 @@ a{
   color: #034861;
 }
 
+
+
+
+div.list-panels {
+
+  .panel-body{
+    padding: 0;
+
+    .row {
+      padding: 15px;
+      margin-left: 0;
+      margin-right: 0;
+
+    }
+  }
+}
+
+
+
 .page-header button.btn.pull-right {
   margin-top: 20px;
   margin-bottom: 10px;

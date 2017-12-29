@@ -58,7 +58,7 @@ module.exports = (sequelize, DataTypes) => {
           { model: sequelize.models.post, as: 'LastPost', include: [{ model: sequelize.models.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }
         ],
         order: [
-          ['updatedAt', 'DESC']
+          ['featured', 'DESC'], ['updatedAt', 'DESC']
         ]
       }).then(forums => {
         resolve(forums);

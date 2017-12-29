@@ -47,20 +47,14 @@ module.exports = (db, middleware) => {
           { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
           { model: db.forum, as: 'subForums', required: false, attributes: { include: ['numTopics', 'numPosts'] }, include: [{ model: db.post, as: 'LastPost', include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }, { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] },
           { model: db.forum, as: 'parentForum', required: false },
-          { model: db.topic, as: 'featuredTopics', required: false, attributes: { include: ['numPosts', 'numPostsFeat'] }, where: { featured: true },
-            include: [
-              { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
-              { model: db.post, as: 'LastPost', include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }
-            ]
-          },
-          { model: db.topic, as: 'topics', required: false, attributes: { include: ['numPosts', 'numPostsFeat'] }, where: { featured: false },
+          { model: db.topic, as: 'topics', required: false, attributes: { include: ['numPosts'] },
             include: [
               { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
               { model: db.post, as: 'LastPost', include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }
             ]
           }
         ],
-      order: [ [{model: db.topic, as: 'topics'}, 'updatedAt', 'DESC'] ],
+      order: [ [{model: db.topic, as: 'topics'}, 'featured', 'DESC'], [{model: db.topic, as: 'topics'}, 'updatedAt', 'DESC'] ],
     }).then(forum => {
       console.log(JSON.stringify(forum));
       res.render('forum', { forum: forum });

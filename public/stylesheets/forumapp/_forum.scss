@@ -6,13 +6,36 @@
 }
 
 
+.row.subforum{
+
+  border-top: solid 1px #CCCCCC;
+  //margin-top: 20px;
+  //padding-top: 20px;
+
+  &.featured {
+    background: #f5f5f5;
+  }
+
+
+  &:first-child {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+
+}
 
 
 .row.forum{
 
   border-top: solid 1px #CCCCCC;
-  margin-top: 20px;
-  padding-top: 20px;
+  //margin-top: 20px;
+  //padding-top: 20px;
+
+  &.featured {
+    background: #f5f5f5;
+  }
 
   &:first-child{
     border-top: none;

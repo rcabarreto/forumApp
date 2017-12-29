@@ -38,51 +38,29 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <div class="panel panel-default">
+      <div class="panel panel-default list-panels">
         <div class="panel-heading">
           <h3 class="panel-title">Sub Forums</h3>
         </div>
         <div class="panel-body">
+
           {{#each forum.subForums as |subforum| }}
             {{>subforum forum=subforum}}
           {{/each}}
+
         </div>
       </div>
     </div>
   </div>
 
 {{/if}}
-
-
-
-{{#if forum.featuredTopics}}
-  <div class="row">
-
-    <div class="col-sm-12">
-      <div class="panel panel-warning">
-        <div class="panel-heading">
-          <h3 class="panel-title">Featured topics</h3>
-        </div>
-        <div class="panel-body">
-
-          {{#each forum.featuredTopics as |featuredTopic|}}
-            {{>topic topic=featuredTopic}}
-          {{/each}}
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-{{/if}}
-
 
 
 {{#if forum.topics}}
   <div class="row">
 
     <div class="col-sm-12">
-      <div class="panel panel-primary">
+      <div class="panel panel-primary list-panels">
         <div class="panel-heading">
           <h3 class="panel-title">Topics</h3>
         </div>

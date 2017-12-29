@@ -1,16 +1,11 @@
-<div class="row topic vertical-align">
+<div class="row topic vertical-align{{#ifCond topic.featured true}} featured{{/ifCond}}">
   <div class="col-sm-6">
     <h4><a href="/topic/{{topic.id}}">{{topic.title}}</a><br><small>by {{user.display_name}} {{formatRelative topic.createdAt}}</small></h4>
 
   </div>
   <div class="col-sm-2">
 
-    {{#ifCond topic.featured true}}
-      <p>{{topic.numPostsFeat}} answers</p>
-    {{else}}
-      <p>{{topic.numPosts}} answers</p>
-    {{/ifCond}}
-
+    <p>{{topic.numPosts}} answers</p>
     <p>{{topic.topicViews}} views</p>
 
   </div>

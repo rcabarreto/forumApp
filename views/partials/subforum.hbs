@@ -1,4 +1,4 @@
-<div class="row subforum vertical-align">
+<div class="row subforum vertical-align{{#ifCond forum.featured true}} featured{{/ifCond}}">
   <div class="col-sm-6">
     <h4><a href="/forum/{{forum.id}}">{{forum.title}}</a><br><small>by {{forum.user.display_name}} {{formatRelative forum.createdAt}}</small></h4>
 

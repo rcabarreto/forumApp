@@ -27,19 +27,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 0
     },
-    numPostsFeat: {
-      type: DataTypes.VIRTUAL(DataTypes.INTEGER, [[sequelize.literal('(SELECT COUNT(`posts`.`id`) FROM `posts` WHERE `posts`.`topicId` = `featuredTopics`.`id`)'), 'numPostsFeat']])
-    },
     numPosts: {
       type: DataTypes.VIRTUAL(DataTypes.INTEGER, [[sequelize.literal('(SELECT COUNT(`posts`.`id`) FROM `posts` WHERE `posts`.`topicId` = `topics`.`id`)'), 'numPosts']])
     }
   });
-
-
-
-  // CASE WHEN `featuredTopics`.`id` IS NOT NULL THEN `posts`.`topicId` = `featuredTopics`.`id` ELSE `posts`.`topicId` = `topics`.`id` END
-
-
 
   return topic;
 };
