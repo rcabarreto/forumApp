@@ -22,7 +22,7 @@ module.exports = (db, middleware) => {
   router.post('/new', (req, res, next) => {
 
     let userId = req.user.id;
-    let forum = _.pick(req.body, 'title', 'description', 'visibility', 'featured', 'allowanonymous');
+    let forum = _.pick(req.body, 'title', 'description', 'visibility', 'featured');
     let forumId = parseInt(req.body.forumId, 10);
 
     forum.userId = userId;

@@ -8408,6 +8408,8 @@ div.compose-message-box {
 
 div.post .post-header {
   height: 30px; }
+  div.post .post-header small {
+    color: #888888; }
 
 div.post .userColumn {
   text-align: center; }
@@ -8417,7 +8419,7 @@ div.post .userColumn {
     margin-top: 10px; }
   div.post .userColumn .since {
     font-size: 12px;
-    color: #aeaeae; }
+    color: #888888; }
 
 div.post blockquote {
   padding: 10px 20px;
