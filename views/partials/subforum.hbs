@@ -5,12 +5,15 @@
       <div class="featured-ribbon"><img src="/images/featuredRibbon.png"></div>
     {{/ifCond}}
 
-    <h4><a href="/forum/{{forum.id}}">{{forum.title}}</a><br><small>by {{forum.user.display_name}} {{formatRelative forum.createdAt}}</small></h4>
+    <div class="goOverRibbon">
+      <h4><a href="/forum/{{forum.id}}">{{forum.title}}</a><br><small>by {{forum.user.display_name}} {{formatRelative forum.createdAt}}</small></h4>
+    </div>
+
   </div>
 
   <div class="col-sm-2">
-    <p>{{forum.numTopics}} topics</p>
-    <p>{{forum.numPosts}} posts</p>
+    <p>{{forum.numTopicsSub}} topics</p>
+    <p>{{forum.numPostsSub}} posts</p>
   </div>
 
   <div class="col-sm-4">

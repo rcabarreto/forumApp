@@ -35,6 +35,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     numPosts: {
       type: DataTypes.VIRTUAL(DataTypes.INTEGER, [[sequelize.literal('(SELECT COUNT(`posts`.`id`) FROM `topics` INNER JOIN `posts` ON `posts`.`topicId` = `topics`.`id` WHERE `topics`.`forumId` = `forum`.`id`)'), 'numPosts']])
+    },
+    numTopicsSub: {
+      type: DataTypes.VIRTUAL(DataTypes.INTEGER, [[sequelize.literal('(SELECT COUNT(`topics`.`id`) FROM `topics` WHERE `topics`.`forumId` = `subForums`.`id`)'), 'numTopicsSub']])
+    },
+    numPostsSub: {
+      type: DataTypes.VIRTUAL(DataTypes.INTEGER, [[sequelize.literal('(SELECT COUNT(`posts`.`id`) FROM `topics` INNER JOIN `posts` ON `posts`.`topicId` = `topics`.`id` WHERE `topics`.`forumId` = `subForums`.`id`)'), 'numPostsSub']])
     }
 
   });

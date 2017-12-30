@@ -8163,6 +8163,10 @@ a {
   .featured-ribbon img {
     width: 100%; }
 
+.goOverRibbon {
+  z-index: 100;
+  position: relative; }
+
 div.list-panels .panel-body {
   padding: 0; }
   div.list-panels .panel-body .row {
@@ -8405,6 +8409,10 @@ div.topic img.img-responsive.img-circle.gravatar {
 
 div.compose-message-box {
   background: #E4E6EA; }
+
+div.post.not-approved {
+  background: #efefef;
+  opacity: 0.5; }
 
 div.post .post-header {
   height: 30px; }

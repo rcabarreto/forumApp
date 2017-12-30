@@ -49,13 +49,22 @@ module.exports = (db, middleware) => {
 
   router.get('/:topicId', (req, res, next) => {
 
+    let userId = req.user.id;
+    let userProfile = req.user.profile;
     let topicId = parseInt(req.params.topicId, 10);
+    let postWhere;
+
+    if (userProfile === 'admin') {
+      postWhere = { [db.sequelize.Op.or]: [{ approved: true }, { approved: false}] };
+    } else {
+      postWhere = { [db.sequelize.Op.or]: [{ approved: true }, { approved: false, userId: userId }] };
+    }
 
     db.topic.findById(topicId, {
       include: [
         { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile', 'createdAt', 'updatedAt'] },
         { model: db.forum },
-        { model: db.post, required: false, where: { approved: true }, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile', 'createdAt', 'updatedAt', 'numPosts'] }] }]
+        { model: db.post, required: false, where: postWhere, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile', 'createdAt', 'updatedAt', 'numPosts'] }] }]
     }).then(topic => {
       // increment the topic views
       topic.increment(['topicViews'], { by: 1 });

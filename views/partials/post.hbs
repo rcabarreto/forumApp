@@ -1,5 +1,5 @@
 
-<div class="panel panel-default post" id="message-{{post.id}}">
+<div class="panel panel-default post{{#unless post.approved}} not-approved{{/unless}}" id="message-{{post.id}}">
   <div class="panel-body">
 
     <div class="col-sm-2 userColumn">
@@ -14,7 +14,11 @@
 
       <div class="post-header">
         <small>posted {{formatRelative post.createdAt}}</small>
-
+        {{#unless post.approved}}
+          <span class="pull-right">
+            <small>Message waiting for approval</small>
+          </span>
+        {{/unless}}
       </div>
 
       <div id="post-content">
@@ -28,7 +32,11 @@
         <button class="btn btn-danger btn-sm deleteMessage" data-toggle="modal" data-target="#confirmDeleteModal" data-post-id="{{post.id}}">Delete Message <span class="glyphicon glyphicon-remove"></span></button>
         {{/ifCond}}
 
-        <button class="btn btn-default btn-sm answerMessage pull-right">Answer (quote) <span class="glyphicon glyphicon-share-alt"></span> </button>
+        <span class="pull-right">
+          <button class="btn btn-default btn-sm answerMessage">Answer (quote) <span class="glyphicon glyphicon-share-alt"></span> </button>
+          {{#ifCond @root.data.user.profile 'admin'}}{{#unless post.approved}}<a class="btn btn-primary btn-sm" href="/moderation/approve/post/{{post.id}}">Approve</a>{{/unless}}{{/ifCond}}
+        </span>
+
       </div>
 
     </div>

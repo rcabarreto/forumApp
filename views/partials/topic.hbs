@@ -4,8 +4,10 @@
     {{#ifCond topic.featured true}}
       <div class="featured-ribbon"><img src="/images/featuredRibbon.png"></div>
     {{/ifCond}}
-    
-    <h4><a href="/topic/{{topic.id}}">{{topic.title}}</a><br><small>by {{user.display_name}} {{formatRelative topic.createdAt}}</small></h4>
+
+    <div class="goOverRibbon">
+      <h4><a href="/topic/{{topic.id}}">{{topic.title}}</a><br><small>by {{user.display_name}} {{formatRelative topic.createdAt}}</small></h4>
+    </div>
 
   </div>
   <div class="hidden-xs col-sm-2">

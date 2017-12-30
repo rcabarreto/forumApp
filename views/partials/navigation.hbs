@@ -28,7 +28,7 @@
             <li><a href="/account/profile">My Profile</a></li>
             {{#ifCond @root.data.user.profile 'admin'}}
               <li><a href="/moderation">Moderation <span class="badge pull-right">{{@root.data.currentPageInfo.pendingApproval}}</span></a></li>
-              <li><a href="/user">User management</a></li>
+              <li><a href="/user">List users</a></li>
             {{/ifCond}}
             <li role="separator" class="divider"></li>
             <li><a href="/account/signout">SIgn Out</a></li>

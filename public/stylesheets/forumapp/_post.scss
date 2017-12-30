@@ -3,6 +3,11 @@
 
 div.post {
 
+  &.not-approved {
+    background: #efefef;
+    opacity: 0.5;
+  }
+
   .post-header {
     height: 30px;
     
