@@ -4,8 +4,8 @@ tinymce.init({
   height: 250,
   theme: 'modern',
   plugins: 'print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
-  toolbar1: 'formatselect | bold italic underline strikethrough forecolor backcolor | link unlink | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat | preview',
-  toolbar2: "fontselect fontsizeselect | cut copy paste | undo redo | table | hr | subscript superscript | image media code",
+  toolbar1: 'formatselect | bold italic underline strikethrough forecolor | link unlink | removeformat | preview',
+  toolbar2: "alignleft aligncenter alignright alignjustify | numlist bullist | undo redo | table | hr | image media code",
   menubar: false,
   content_css : '/stylesheets/customTinymceStyle.css',
   image_advtab: true
@@ -16,8 +16,8 @@ tinymce.init({
   height: 150,
   theme: 'modern',
   plugins: 'print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker textpattern help',
-  toolbar1: 'formatselect | bold italic underline strikethrough forecolor backcolor | link unlink | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat | preview',
-  toolbar2: "fontselect fontsizeselect | cut copy paste | undo redo | table | hr | subscript superscript | image media code",
+  toolbar1: 'formatselect | bold italic underline strikethrough forecolor | link unlink | removeformat | preview',
+  toolbar2: "alignleft aligncenter alignright alignjustify | numlist bullist | undo redo | table | hr | image media code",
   menubar: false,
   content_css : '/stylesheets/customTinymceStyle.css',
   image_advtab: true

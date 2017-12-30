@@ -11,8 +11,8 @@
 <div class="page-header">
 
   <div class="row">
-    <div class="col-xs-6"><h1>{{forum.title}}</h1>{{encodeMyString forum.description}}</div>
-    <div class="col-xs-6">
+    <div class="col-sm-6"><h1>{{forum.title}}</h1>{{encodeMyString forum.description}}</div>
+    <div class="col-sm-6">
       {{#if @root.data.user}}
         <span class="pull-right">
           {{#ifCond @root.data.user.profile 'admin'}}

@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
 
       sequelize.models.forum.findAll({
         attributes: { include: ['numTopics', 'numPosts'] },
-        where: { parentId: null },
+        where: { parentId: null, visibility: 'public' },
         include: [
           { model: sequelize.models.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
           { model: sequelize.models.forum, as: 'subForums', required: false, include: [{ model: sequelize.models.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] },

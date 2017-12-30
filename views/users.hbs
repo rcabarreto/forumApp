@@ -1,4 +1,17 @@
 
+<ol class="breadcrumb">
+  <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+  <li class="active">User management</li>
+</ol>
+
+
+<div class="page-header">
+  <div class="row">
+    <div class="col-xs-12"><h1>User management</h1></div>
+  </div>
+</div>
+
+
 <table class="table">
   <caption>List of all users</caption>
   <thead>
@@ -15,7 +28,7 @@
 
   {{#each users as |user|}}
     <tr>
-      <th scope="row">1</th>
+      <th scope="row">{{user.id}}</th>
       <td>{{user.first_name}}</td>
       <td>{{user.last_name}}</td>
       <td>{{user.display_name}}</td>

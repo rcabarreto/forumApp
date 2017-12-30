@@ -3,9 +3,9 @@
   <div class="card">
     <img class="card-img-top" src="/images/forum.png">
     <div class="card-block">
-      <h4 class="card-title">{{forum.title}}</h4>
+      <h4 class="card-title">{{truncateString forum.title 25}}</h4>
       <div class="card-text">
-        {{encodeMyString forum.description}}
+        {{truncateString forum.description 200}}
       </div>
     </div>
     <div class="card-footer">

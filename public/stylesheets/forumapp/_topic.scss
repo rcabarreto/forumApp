@@ -9,11 +9,12 @@
 .row.topic{
 
   border-top: solid 1px #CCCCCC;
+  height: 90px;
   //margin-top: 20px;
   //padding-top: 20px;
 
   &.featured {
-    background: #cee2ec;
+    background: #ebf1f5;
   }
 
   &:first-child {

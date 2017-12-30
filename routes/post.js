@@ -11,8 +11,11 @@ module.exports = (db, middleware) => {
   router.post('/new', (req, res, next) => {
 
     let userId = req.user.id;
+    let userProfile = req.user.profile;
     let post = _.pick(req.body, 'message', 'topicId');
+
     post.userId = userId;
+    post.approved = (userProfile === 'admin');
 
     db.topic.findById(post.topicId).then(topic => {
 

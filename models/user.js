@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     numPosts: {
-      type: DataTypes.VIRTUAL(DataTypes.INTEGER, [[sequelize.literal('(SELECT COUNT(`posts`.`id`) FROM `posts` WHERE `posts`.`userId` = `user`.`id`)'), 'numPosts']])
+      type: DataTypes.VIRTUAL(DataTypes.INTEGER, [[sequelize.literal('(SELECT COUNT(`posts`.`id`) FROM `posts` WHERE `posts`.`userId` = `posts->user`.`id`)'), 'numPosts']])
     }
   }, {
     hooks: {

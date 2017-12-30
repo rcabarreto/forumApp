@@ -1,0 +1,82 @@
+
+<ol class="breadcrumb">
+  <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+  <li class="active">Moderation</li>
+</ol>
+
+
+<div class="page-header">
+  <div class="row">
+    <div class="col-xs-12"><h1>Moderation</h1></div>
+  </div>
+</div>
+
+
+{{#if topics}}
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Posts pending approval</div>
+
+    <!-- Table -->
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Featured</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      {{#each topics as |topic|}}
+        <tr>
+          <td>{{topic.title}}</td>
+          <td>{{topic.type}}</td>
+          <td>{{topic.featured}}</td>
+          <td><a class="btn btn-primary pull-right" href="/moderation/approve/topic/{{topic.id}}">Approve</a></td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+
+  </div>
+
+{{else}}
+  <h3>No topics pending approval</h3>
+{{/if}}
+
+
+<hr>
+
+{{#if posts}}
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Posts pending approval</div>
+
+    <!-- Table -->
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>Message</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      {{#each posts as |post|}}
+      <tr>
+        <td>{{post.title}}</td>
+        <td>{{encodeMyString post.message}}</td>
+        <td><a class="btn btn-primary pull-right" href="/moderation/approve/post/{{post.id}}">Approve</a></td>
+      </tr>
+      {{/each}}
+      </tbody>
+    </table>
+
+  </div>
+
+{{else}}
+  <h3>No posts pending approval</h3>
+{{/if}}
+
+

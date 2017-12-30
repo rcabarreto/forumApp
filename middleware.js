@@ -38,32 +38,41 @@ module.exports = function (db) {
 
       let routePath = req.path;
 
-      console.log('PAth is: '+routePath);
-
       routePath.indexOf(1);
       routePath.toLowerCase();
 
       let route = "/"+routePath.split("/")[1];
 
-      utils.logDebug('Loading page: '+route);
+      db.topic.find({ where: { approved: false }, attributes: [[db.sequelize.fn('COUNT', db.sequelize.col('id')), 'numTopics']] }).then(topic => {
+        db.post.find({ where: { approved: false }, attributes: [[db.sequelize.fn('COUNT', db.sequelize.col('id')), 'numPosts']] }).then(post => {
 
-      let templateData = res.locals.data || (res.locals.data = {});
+          let topics = JSON.parse(JSON.stringify(topic));
+          let posts = JSON.parse(JSON.stringify(post));
+          let total = parseInt(topics.numTopics) + parseInt(posts.numPosts);
 
-      templateData.currentPageInfo = {
-        pageName: 'Error',
-        windowTitle: 'Contability Error',
-        pageTitle: 'Oops...',
-        pageSubTitle: 'Something went terribly wrong!!'
-      };
+          let templateData = res.locals.data || (res.locals.data = {});
 
+          templateData.currentPageInfo = {
+            pendingApproval: total
+          };
 
-      next();
+          next();
+
+        });
+      });
+
+    },
+    requireAdmin: (req, res, next) => {
+
+      if (req.user.profile === 'admin') {
+        next()
+      } else {
+        throw new Error('Access denied! You are not admin to this forum!');
+      }
 
     },
     requireAuthentication: (req, res, next) => {
       let token = req.cookies.vanhackforumapp_login_token || '';
-
-      req.systemMenu = {isSystemAdmin: true};
 
       db.token.findOne({
         where: {
@@ -82,17 +91,12 @@ module.exports = function (db) {
         templateData.user = {
           name: user.first_name + ' ' + user.last_name
         };
-        templateData.userPreferences = {
-          locale: user.locale,
-          timezone: user.timezone,
-          currency: user.currency
-        };
 
         next();
         return null;
 
       }).catch(function () {
-        res.redirect('/login');
+        res.redirect('/');
       });
     },
     verifyAuthentication: (req, res, next) => {

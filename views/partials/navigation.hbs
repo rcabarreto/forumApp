@@ -14,16 +14,9 @@
 
     <div id="navbar" class="navbar-collapse collapse">
 
-
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
         <li><a href="/forum">Forums</a></li>
-
-
-
       </ul>
-
-
 
       {{#if @root.data.user}}
       <!--right menu group-->
@@ -34,7 +27,8 @@
           <ul class="dropdown-menu">
             <li><a href="/account/profile">My Profile</a></li>
             {{#ifCond @root.data.user.profile 'admin'}}
-            <li><a href="/user">User management</a></li>
+              <li><a href="/moderation">Moderation <span class="badge pull-right">{{@root.data.currentPageInfo.pendingApproval}}</span></a></li>
+              <li><a href="/user">User management</a></li>
             {{/ifCond}}
             <li role="separator" class="divider"></li>
             <li><a href="/account/signout">SIgn Out</a></li>
@@ -46,7 +40,6 @@
         {{> login}}
       {{/if}}
 
-
-    </div><!--/.nav-collapse -->
+    </div>
   </div>
 </nav>

@@ -20,6 +20,63 @@ module.exports = (db, middleware) => {
   });
 
 
+
+
+  router.get('/moderation', middleware.requireAdmin, (req, res, next) => {
+
+    db.topic.findAll({
+      where: { approved: false },
+      include: [
+        { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }
+      ] }).then(topics => {
+
+
+        console.log(JSON.stringify(topics));
+
+      db.post.findAll({ where: { approved: false } }).then(posts => {
+        res.render('moderation', { topics: topics, posts: posts });
+      });
+
+    });
+  });
+
+
+
+  router.get('/moderation/approve/topic/:topicId', middleware.requireAdmin, (req, res, next) => {
+
+    let topicId = parseInt(req.params.topicId, 10);
+
+    db.topic.findById(topicId).then(topic => {
+      if (topic) {
+        topic.update({ approved: true }).then(topic => {
+          res.redirect('/moderation');
+        });
+      } else {
+        //throw some error
+      }
+    });
+
+  });
+
+  router.get('/moderation/approve/post/:postId', middleware.requireAdmin, (req, res, next) => {
+
+    let postId = parseInt(req.params.postId, 10);
+
+    db.post.findById(postId).then(post => {
+      if (post) {
+        post.update({ approved: true }).then(post => {
+          res.redirect('/moderation');
+        });
+      } else {
+        //throw some error
+      }
+    });
+
+
+  });
+
+
+
   router.get('/install', (req, res, next) => {
 
     let formConfig = {

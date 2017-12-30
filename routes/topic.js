@@ -11,15 +11,18 @@ module.exports = (db, middleware) => {
   router.post('/new', (req, res, next) => {
 
     let userId = req.user.id;
+    let userProfile = req.user.profile;
 
     let title = req.body.title;
     let description = req.body.description;
     let featured = req.body.featured;
     let forumId = parseInt(req.body.forumId, 10);
 
+
     let topic = {
       title: title,
       type: 'public',
+      approved: (userProfile === 'admin'),
       featured: featured,
       userId: userId
     };
@@ -27,6 +30,7 @@ module.exports = (db, middleware) => {
     let post = {
       title: title,
       message: description,
+      approved: (userProfile === 'admin'),
       userId: userId
     };
 
@@ -51,7 +55,7 @@ module.exports = (db, middleware) => {
       include: [
         { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile', 'createdAt', 'updatedAt'] },
         { model: db.forum },
-        { model: db.post, required: false, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile', 'createdAt', 'updatedAt', 'numPosts'] }] }]
+        { model: db.post, required: false, where: { approved: true }, include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile', 'createdAt', 'updatedAt', 'numPosts'] }] }]
     }).then(topic => {
       // increment the topic views
       topic.increment(['topicViews'], { by: 1 });

@@ -47,7 +47,7 @@ module.exports = (db, middleware) => {
           { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
           { model: db.forum, as: 'subForums', required: false, attributes: { include: ['numTopics', 'numPosts'] }, include: [{ model: db.post, as: 'LastPost', include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }, { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] },
           { model: db.forum, as: 'parentForum', required: false },
-          { model: db.topic, as: 'topics', required: false, attributes: { include: ['numPosts'] },
+          { model: db.topic, as: 'topics', required: false, where: { approved: true }, attributes: { include: ['numPosts'] },
             include: [
               { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] },
               { model: db.post, as: 'LastPost', include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }] }

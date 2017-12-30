@@ -1,14 +1,18 @@
 <div class="row subforum vertical-align{{#ifCond forum.featured true}} featured{{/ifCond}}">
   <div class="col-sm-6">
+
+    {{#ifCond forum.featured true}}
+      <div class="featured-ribbon"><img src="/images/featuredRibbon.png"></div>
+    {{/ifCond}}
+
     <h4><a href="/forum/{{forum.id}}">{{forum.title}}</a><br><small>by {{forum.user.display_name}} {{formatRelative forum.createdAt}}</small></h4>
-
   </div>
-  <div class="col-sm-2">
 
+  <div class="col-sm-2">
     <p>{{forum.numTopics}} topics</p>
     <p>{{forum.numPosts}} posts</p>
-
   </div>
+
   <div class="col-sm-4">
 
     {{#if LastPost}}
@@ -20,10 +24,8 @@
             </a>
           </div>
           <div class="media-body">
-
-            <h4 class="media-heading"><a href="/forum/{{topicId}}#message-{{id}}">{{truncateString message}}</a> <br><small>by {{user.display_name}}</small> </h4>
+            <h4 class="media-heading"><a href="/forum/{{topicId}}#message-{{id}}">{{truncateString message 20}}</a> <br><small>by {{user.display_name}}</small> </h4>
             <small>{{formatRelative createdAt}}</small>
-
           </div>
         </div>
       {{/with}}
