@@ -46,13 +46,14 @@ http://localhost:3000
 
 ## Deployment
 
-I made deployment using docker-compose, but before starting, you should add the following to your hosts file.
+I created a Dockerfile to containerize this project making it easy to deploy to a production environment. In production the system uses a production grade database, in this case is MySQL. It also uses a NGINX as proxy server. See docker-compose for more details on the infrastructure.
 
+If you want to try the Docker deployment, just add the following to your hosts file.
 ````
 127.0.0.1    www.vanhackforum.com app.vanhackforum.com pma.vanhackforum.com
 ````
 
-Then just CD into the project and run
+Then just cd into the project and run
 
 ````
 $ docker-compose up
