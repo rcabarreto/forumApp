@@ -49,16 +49,21 @@ module.exports = (db, middleware) => {
 
   router.get('/:topicId', (req, res, next) => {
 
-    let userId = req.user.id;
-    let userProfile = req.user.profile;
-    let topicId = parseInt(req.params.topicId, 10);
-    let postWhere;
+    let postWhere = { approved: true };
 
-    if (userProfile === 'admin') {
-      postWhere = { [db.sequelize.Op.or]: [{ approved: true }, { approved: false}] };
-    } else {
-      postWhere = { [db.sequelize.Op.or]: [{ approved: true }, { approved: false, userId: userId }] };
+    if (req.user) {
+      let userId = req.user.id;
+      let userProfile = req.user.profile;
+
+      if (userProfile === 'admin') {
+        postWhere = { [db.sequelize.Op.or]: [{ approved: true }, { approved: false}] };
+      } else {
+        postWhere = { [db.sequelize.Op.or]: [{ approved: true }, { approved: false, userId: userId }] };
+      }
+
     }
+
+    let topicId = parseInt(req.params.topicId, 10);
 
     db.topic.findById(topicId, {
       include: [

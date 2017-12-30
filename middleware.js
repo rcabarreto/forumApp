@@ -102,6 +102,11 @@ module.exports = function (db) {
     verifyAuthentication: (req, res, next) => {
       let token = req.cookies.vanhackforumapp_login_token || '';
 
+      if (token == ''){
+        next();
+        return null;
+      }
+
       db.token.findOne({
         where: {
           tokenHash: cryptojs.MD5(token).toString()

@@ -33,7 +33,7 @@
         {{/ifCond}}
 
         <span class="pull-right">
-          <button class="btn btn-default btn-sm answerMessage">Answer (quote) <span class="glyphicon glyphicon-share-alt"></span> </button>
+          {{#if @root.data.user}}<button class="btn btn-default btn-sm answerMessage">Answer (quote) <span class="glyphicon glyphicon-share-alt"></span> </button>{{/if}}
           {{#ifCond @root.data.user.profile 'admin'}}{{#unless post.approved}}<a class="btn btn-primary btn-sm" href="/moderation/approve/post/{{post.id}}">Approve</a>{{/unless}}{{/ifCond}}
         </span>
 
