@@ -18,9 +18,6 @@ module.exports = function (db) {
         }
       });
 
-      console.log('checking installation!');
-
-
     },
     intl: (req, res, next) => {
       let app = req.app;
@@ -95,7 +92,7 @@ module.exports = function (db) {
         next();
         return null;
 
-      }).catch(function () {
+      }).catch(() => {
         res.redirect('/');
       });
     },

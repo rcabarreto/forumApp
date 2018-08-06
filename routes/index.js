@@ -10,28 +10,18 @@ module.exports = (db, middleware) => {
 
   /* GET home page. */
   router.get('/', middleware.checkInstall, (req, res, next) => {
-
     db.forum.findAllForums().then(forums => {
-      console.log(JSON.stringify(forums));
       res.render('index', { forums: forums });
     });
-
-
   });
-
-
 
 
   router.get('/moderation', middleware.requireAdmin, (req, res, next) => {
 
     db.topic.findAll({
       where: { approved: false },
-      include: [
-        { model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }
-      ] }).then(topics => {
-
-
-        console.log(JSON.stringify(topics));
+      include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }]
+    }).then(topics => {
 
       db.post.findAll({ where: { approved: false } }).then(posts => {
         res.render('moderation', { topics: topics, posts: posts });
@@ -41,22 +31,26 @@ module.exports = (db, middleware) => {
   });
 
 
-
   router.get('/moderation/approve/topic/:topicId', middleware.requireAdmin, (req, res, next) => {
 
     let topicId = parseInt(req.params.topicId, 10);
 
     db.topic.findById(topicId).then(topic => {
       if (topic) {
-        topic.update({ approved: true }).then(topic => {
-          res.redirect('/moderation');
-        });
+        return topic;
       } else {
         //throw some error
       }
+    }).then(topic => {
+      return topic.update({ approved: true });
+    }).then(() => {
+      res.redirect('/moderation');
+    }).catch(err => {
+      res.status(500).send(err);
     });
 
   });
+
 
   router.get('/moderation/approve/post/:postId', middleware.requireAdmin, (req, res, next) => {
 
@@ -64,17 +58,19 @@ module.exports = (db, middleware) => {
 
     db.post.findById(postId).then(post => {
       if (post) {
-        post.update({ approved: true }).then(post => {
-          res.redirect('/moderation');
-        });
+        return post;
       } else {
         //throw some error
       }
+    }).then(post => {
+      return post.update({ approved: true });
+    }).then(() => {
+      res.redirect('/moderation');
+    }).catch(err => {
+      res.status(500).send(err);
     });
 
-
   });
-
 
 
   router.get('/install', (req, res, next) => {
@@ -120,17 +116,14 @@ module.exports = (db, middleware) => {
   });
 
 
-
-
   router.post('/esquecisenha', function (req,res, next) {
 
-    var email = req.body.email;
+    let email = req.body.email;
 
     db.user.findOne({
       where: { email: email }
     }).then(function(user) {
       if (user) {
-        console.log(JSON.stringify(user));
         res.send(JSON.stringify(user.toPublicJSON()));
       } else {
         res.status(404).send();

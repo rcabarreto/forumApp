@@ -44,6 +44,10 @@ After the app starts, you can access it on your web browser.
 http://localhost:3000
 ````
 
+## Development
+
+For development, you should use some plugin like uglifyjs to minimize the js files. On Dev mode, the default database will be SQLite and the file will be created on the data folder. 
+
 ## Deployment
 
 I created a Dockerfile to containerize this project making it easy to deploy to a production environment. In production the system uses a production grade database, in this case is MySQL. It also uses a NGINX as proxy server. See docker-compose for more details on the infrastructure.

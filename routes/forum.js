@@ -60,10 +60,15 @@ module.exports = (db, middleware) => {
         [{model: db.topic, as: 'topics'}, 'updatedAt', 'DESC']
       ],
     }).then(forum => {
-      console.log(JSON.stringify(forum));
-      res.render('forum', { forum: forum });
-    });
 
+      if (forum === null)
+        throw new Error();
+
+      res.render('forum', { forum: forum });
+    }).catch(err => {
+      console.log(err);
+      res.status(404).send();
+    });
 
   });
 

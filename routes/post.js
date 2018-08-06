@@ -14,22 +14,24 @@ module.exports = (db, middleware) => {
     let userProfile = req.user.profile;
     let post = _.pick(req.body, 'message', 'topicId');
 
+    let currTopic;
+
     post.userId = userId;
     post.approved = (userProfile === 'admin');
 
     db.topic.findById(post.topicId).then(topic => {
 
       post.title = topic.title;
+      currTopic = topic;
 
-      topic.getForum().then(forum => {
+      return db.post.create(post);
 
-        db.post.create(post).then(post => {
-          topic.setLastPost(post); // set the last post id on the topic object
-          forum.setLastPost(post); // set the last post id on the forum object
-          res.redirect('/topic/'+ post.topicId);
-        });
-
-      })
+    }).then(post => {
+      currTopic.setLastPost(post); // set the last post id on the topic object
+      currTopic.getForum().then(forum => {
+        forum.setLastPost(post); // set the last post id on the forum object
+      });
+      res.redirect('/topic/'+ post.topicId);
     });
   });
 
@@ -37,16 +39,15 @@ module.exports = (db, middleware) => {
   router.delete('/:postId', (req, res, next) => {
     let postId = parseInt(req.params.postId, 10);
     db.post.findById(postId).then(post => {
-
-      console.log(JSON.stringify(post));
-
-      post.destroy().then(() => {
-        res.status(200).send();
-      })
-
+      return post;
+    }).then(post => {
+      return post.destroy();
+    }).then(() => {
+      res.status(200).send();
+    }).catch(err => {
+      res.status(500).send(err);
     })
   });
-
 
 
   return router;
