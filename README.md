@@ -1,6 +1,6 @@
-# Vanhack Forum App
+# Simple Forum App
 
-Forum app for VanHack Accelerator Program.
+A very simple and small forum web app
 
 ## Getting Started
 
@@ -12,7 +12,7 @@ You need to have Node installed to run this project,
 
 ````
 $ cd ~
-$ curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh
+$ curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
 $ sudo apt-get install nodejs
 ````
 
@@ -24,7 +24,7 @@ $ node -v
 
 ````
 Output
-v6.0.0
+v8.0.0
 ````
 
 ### Installing
@@ -50,7 +50,7 @@ I created a Dockerfile to containerize this project making it easy to deploy to 
 
 If you want to try the Docker deployment, just add the following to your hosts file.
 ````
-127.0.0.1    www.vanhackforum.com app.vanhackforum.com pma.vanhackforum.com
+127.0.0.1    www.forumapp.com app.forumapp.com pma.forumapp.com
 ````
 
 Then just cd into the project and run

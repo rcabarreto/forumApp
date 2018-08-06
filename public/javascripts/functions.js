@@ -27,7 +27,7 @@ tinymce.init({
   $.fn.answerThisMessage = function() {
     return this.each(function() {
       $(this).click(function () {
-        var messageContent = $(this).parent().prev().html();
+        var messageContent = $(this).parent().parent().prev().html();
         tinymce.get("newPostMessage").execCommand('mceInsertContent', false, '<blockquote>'+ messageContent +'</blockquote><p></p>');
         $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });
       });
