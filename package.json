@@ -25,11 +25,11 @@
   },
   "homepage": "https://github.com/rcabarreto/forumApp#readme",
   "dependencies": {
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^3.0.0",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "crypto-js": "^3.1.9-1",
-    "debug": "~2.6.3",
+    "debug": "^3.1.0",
     "express": "~4.16.1",
     "express-handlebars": "^3.0.0",
     "formidable": "^1.1.1",
@@ -44,10 +44,10 @@
     "node-sass-middleware": "^0.11.0",
     "node-schedule": "^1.2.5",
     "nodemailer": "^4.1.2",
-    "nodemailer-express-handlebars": "^2.0.0",
+    "nodemailer-express-handlebars": "^3.0.0",
     "sequelize": "^4.13.3",
-    "serve-favicon": "~2.4.5",
-    "sqlite3": "^3.1.13",
+    "serve-favicon": "^2.5.0",
+    "sqlite3": "^4.0.2",
     "striptags": "^3.1.1",
     "underscore": "^1.8.3"
   }
