@@ -13,6 +13,7 @@
       <div class="panel-body">
 
         <div class="stepper">
+
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
               <a class="persistant-disabled" href="#stepper-step-1" data-toggle="tab" aria-controls="stepper-step-1" role="tab" title="Step 1">
@@ -37,11 +38,10 @@
           </ul>
 
 
-
           <form role="form" data-toggle="validator" action="{{form.action}}" method="{{form.method}}">
+
             <div class="tab-content">
               <div class="tab-pane fade in active" role="tabpanel" id="stepper-step-1">
-
 
                 {{#if form.profile}}
                   <input type="hidden" name="profile" value="{{form.profile}}">
@@ -50,8 +50,31 @@
                 {{/if}}
                 <input type="hidden" name="display_name" id="display_name" value="admin">
 
-                <h2><small>{{form.subtitle}}</small></h2>
+                <h2><small>1. Website configuration</small></h2>
+
                 <hr class="colorgraph">
+
+
+
+                <hr class="colorgraph">
+
+                <div class="row">
+                  <div class="col-md-6 pull-right">
+                    <a class="btn btn-primary btn-block pull-right next-step">Next</a>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+
+              <div class="tab-pane fade" role="tabpanel" id="stepper-step-2">
+
+                <h2><small>2. Enter Admin user information</small></h2>
+
+                <hr class="colorgraph">
+
                 <div class="row">
                   <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="form-group">
@@ -69,6 +92,7 @@
                   <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4" value="{{form.data.email}}" data-error="The email address is invalid" required>
                   <div class="help-block with-errors"></div>
                 </div>
+
                 <div class="row" id="pwd-container">
                   <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="form-group">
@@ -92,28 +116,25 @@
                 <hr class="colorgraph">
 
                 <div class="row">
-                  <div class="col-md-12"><input type="submit" value="{{form.buttonlabel}}" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+                  <div class="col-md-6">
+                    <a class="btn btn-default btn-block prev-step">Back</a>
+                  </div>
+                  <div class="col-md-6 pull-right">
+                    <a class="btn btn-primary btn-block pull-right next-step">Next</a>
+                  </div>
                 </div>
 
-
-
-
               </div>
-              <div class="tab-pane fade" role="tabpanel" id="stepper-step-2">
-                <h3 class "h2">2. Enter Payment Information</h3>
-                <p>This is step 2</p>
-                <ul class="list-inline pull-right">
-                  <li>
-                    <a class="btn btn-default prev-step">Back</a>
-                  </li>
-                  <li>
-                    <a class="btn btn-primary next-step">Next</a>
-                  </li>
-                </ul>
-              </div>
+
+
+
+
               <div class="tab-pane fade" role="tabpanel" id="stepper-step-3">
-                <h3 class="hs">3. Review and Submit Payment</h3>
+
+                <h2><small>3. Review and Submit Payment</small></h2>
+
                 <p>This is step 3</p>
+
                 <ul class="list-inline pull-right">
                   <li>
                     <a class="btn btn-default prev-step">Back</a>
@@ -126,16 +147,26 @@
                   </li>
                 </ul>
               </div>
+
+
+
+
               <div class="tab-pane fade" role="tabpanel" id="stepper-step-4">
-                <h3>4. All done!</h3>
+
+                <h2><small>4. All done!</small></h2>
                 <p>You have successfully completed all steps.</p>
+
+                <div class="row">
+                  <div class="col-md-6"><a class="btn btn-default btn-block prev-step">Back</a></div>
+                  <div class="col-md-6 pull-right"><input type="submit" value="Finish" class="btn btn-primary pull-right btn-block" tabindex="7"></div>
+                </div>
+
               </div>
+
+
             </div>
           </form>
         </div>
-
-
-
 
       </div>
     </div>

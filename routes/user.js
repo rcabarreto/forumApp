@@ -9,7 +9,7 @@ module.exports = (db, middleware) => {
 
 
   /* GET home page. */
-  router.get('/', function(req, res, next) {
+  router.get('/', (req, res, next) => {
 
     db.user.findAll().then(users => {
       res.render('users', { users: users });

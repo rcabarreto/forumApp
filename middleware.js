@@ -69,7 +69,7 @@ module.exports = function (db) {
 
     },
     requireAuthentication: (req, res, next) => {
-      let token = req.cookies.vanhackforumapp_login_token || '';
+      let token = req.cookies.forumapp_login_token || '';
 
       db.token.findOne({
         where: {
@@ -97,7 +97,7 @@ module.exports = function (db) {
       });
     },
     verifyAuthentication: (req, res, next) => {
-      let token = req.cookies.vanhackforumapp_login_token || '';
+      let token = req.cookies.forumapp_login_token || '';
 
       if (token == ''){
         next();

@@ -8,7 +8,7 @@ module.exports = (db, middleware) => {
   let router = express.Router();
 
 
-  router.get('/register', function(req, res, next) {
+  router.get('/register', (req, res, next) => {
 
     let formConfig = {
       title: 'Sign up',
@@ -32,15 +32,13 @@ module.exports = (db, middleware) => {
 
     let body = _.pick(req.body, 'first_name', 'last_name', 'display_name', 'email', 'profile', 'password');
 
-    db.user.create(body).then(function(user) {
+    db.user.create(body).then(user => {
       res.redirect('/');
-    }, function(e) {
-      res.status(400).json(e);
+    }, err => {
+      res.status(500).send();
     });
 
-
   });
-
 
 
   router.post('/signin', (req, res, next) => {
@@ -56,7 +54,7 @@ module.exports = (db, middleware) => {
       });
     }).then(tokenInstance => {
       // res.header('Auth', tokenInstance.get('token')).json(userInstance.toPublicJSON());
-      res.cookie('vanhackforumapp_login_token', tokenInstance.get('token'));
+      res.cookie('forumapp_login_token', tokenInstance.get('token'));
       res.status(200).json(userInstance.toPublicJSON());
     }).catch(err => {
       console.log('error: ' + err);
@@ -65,20 +63,19 @@ module.exports = (db, middleware) => {
   });
 
 
-
-  router.get('/forgotpassword', function (req,res, next) {
+  router.get('/forgotpassword', (req,res, next) => {
 
     let email = req.body.email;
 
     db.user.findOne({
       where: { email: email }
-    }).then(function(user) {
+    }).then(user => {
       if (user) {
         res.send(JSON.stringify(user.toPublicJSON()));
       } else {
         res.status(404).send();
       }
-    }, function() {
+    }, err => {
       res.status(500).send();
     });
 
@@ -99,11 +96,11 @@ module.exports = (db, middleware) => {
 
   router.get('/signout', middleware.requireAuthentication, (req, res, next) => {
 
-    req.token.destroy().then(function () {
+    req.token.destroy().then(() => {
       // res.status(204).send();
-      res.clearCookie('vanhackforumapp_login_token');
+      res.clearCookie('forumapp_login_token');
       res.redirect('/');
-    }).catch(function () {
+    }).catch(err => {
       res.status(500).send();
     });
 

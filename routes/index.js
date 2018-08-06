@@ -78,15 +78,13 @@ module.exports = (db, middleware) => {
     let formConfig = {
       profile: 'admin',
       title: 'Installation',
-      subtitle: 'Create admin user',
       method: 'post',
       action: '/account/register',
-      buttonlabel: 'Next',
       data: {
-        first_name: '',
-        last_name: '',
+        first_name: 'Rodrigo',
+        last_name: 'Barreto',
         display_name: 'admin',
-        email: ''
+        email: 'rcabarreto@gmail.com'
       }
     };
 
@@ -107,7 +105,7 @@ module.exports = (db, middleware) => {
       });
     }).then(tokenInstance => {
       // res.header('Auth', tokenInstance.get('token')).json(userInstance.toPublicJSON());
-      res.cookie('vanhackforumapp_login_token', tokenInstance.get('token'));
+      res.cookie('forumapp_login_token', tokenInstance.get('token'));
       res.redirect('/');
     }).catch(err => {
       console.log('error: ' + err);
@@ -116,19 +114,19 @@ module.exports = (db, middleware) => {
   });
 
 
-  router.post('/esquecisenha', function (req,res, next) {
+  router.post('/esquecisenha', (req,res, next) => {
 
     let email = req.body.email;
 
     db.user.findOne({
       where: { email: email }
-    }).then(function(user) {
+    }).then(user => {
       if (user) {
         res.send(JSON.stringify(user.toPublicJSON()));
       } else {
         res.status(404).send();
       }
-    }, function() {
+    }, err => {
       res.status(500).send();
     });
 
