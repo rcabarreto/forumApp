@@ -61,12 +61,12 @@ module.exports = (db, middleware) => {
       ],
     }).then(forum => {
 
-      if (forum === null)
+      if (!forum)
         throw new Error();
 
       res.render('forum', { forum: forum });
+
     }).catch(err => {
-      console.log(err);
       res.status(404).send();
     });
 
