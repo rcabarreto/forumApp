@@ -59,3 +59,4 @@ typings/
 
 .idea/
 /data/forumdata.sqlite
+.history/

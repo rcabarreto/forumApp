@@ -1,81 +1,76 @@
-'use strict';
 
-let express = require('express');
+
+const express = require('express');
 
 
 module.exports = (db, middleware) => {
-
-  let router = express.Router();
+  const router = express.Router();
 
 
   /* GET home page. */
   router.get('/', middleware.checkInstall, (req, res, next) => {
-    db.forum.findAllForums().then(forums => {
-      res.render('index', { forums: forums });
-    });
+    db.forum
+      .findAllForums()
+      .then(forums => res.render('index', { forums }));
   });
 
 
   router.get('/moderation', middleware.requireAdmin, (req, res, next) => {
+    let moderationTopics;
 
-    db.topic.findAll({
-      where: { approved: false },
-      include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }]
-    }).then(topics => {
-
-      db.post.findAll({ where: { approved: false } }).then(posts => {
-        res.render('moderation', { topics: topics, posts: posts });
+    db.topic
+      .findAll({
+        where: { approved: false },
+        include: [{ model: db.user, attributes: ['id', 'first_name', 'last_name', 'display_name', 'email', 'profile'] }],
+      })
+      .then((topics) => {
+        moderationTopics = topics;
+        return db.post.findAll({ where: { approved: false } });
+      })
+      .then((posts) => {
+        res.render('moderation', { moderationTopics, posts });
       });
-
-    });
   });
 
 
   router.get('/moderation/approve/topic/:topicId', middleware.requireAdmin, (req, res, next) => {
+    const topicId = parseInt(req.params.topicId, 10);
 
-    let topicId = parseInt(req.params.topicId, 10);
-
-    db.topic.findById(topicId).then(topic => {
-      if (topic) {
+    db.topic
+      .findByPk(topicId)
+      .then((topic) => {
+        if (topic === null) {
+          res.status(404).send();
+          return;
+        }
         return topic;
-      } else {
-        //throw some error
-      }
-    }).then(topic => {
-      return topic.update({ approved: true });
-    }).then(() => {
-      res.redirect('/moderation');
-    }).catch(err => {
-      res.status(500).send(err);
-    });
-
+      })
+      .then(topic => topic.update({ approved: true }))
+      .then(() => res.redirect('/moderation'))
+      .catch(err => res.status(500).send(err));
   });
 
 
   router.get('/moderation/approve/post/:postId', middleware.requireAdmin, (req, res, next) => {
+    const postId = parseInt(req.params.postId, 10);
 
-    let postId = parseInt(req.params.postId, 10);
-
-    db.post.findById(postId).then(post => {
-      if (post) {
+    db.post
+      .findByPk(postId)
+      .then((post) => {
+        if (post === null) {
+          res.status(404).send();
+          return;
+        }
         return post;
-      } else {
-        //throw some error
-      }
-    }).then(post => {
-      return post.update({ approved: true });
-    }).then(() => {
-      res.redirect('/moderation');
-    }).catch(err => {
-      res.status(500).send(err);
-    });
-
+      })
+      .then(post => post.update({ approved: true }))
+      .then(() => res.redirect('/moderation'))
+      .catch(err => res.status(500).send(err));
   });
 
 
   router.get('/install', (req, res, next) => {
-
-    let formConfig = {
+    const formConfig = {
       profile: 'admin',
       title: 'Installation',
       method: 'post',
@@ -84,8 +79,8 @@ module.exports = (db, middleware) => {
         first_name: 'Rodrigo',
         last_name: 'Barreto',
         display_name: 'admin',
-        email: 'rcabarreto@gmail.com'
-      }
+        email: 'rcabarreto@gmail.com',
+      },
     };
 
     res.render('install', { form: formConfig });
@@ -93,46 +88,46 @@ module.exports = (db, middleware) => {
 
 
   router.post('/login', (req, res, next) => {
-
-    let body = _.pick(req.body, 'email', 'password');
+    const body = _.pick(req.body, 'email', 'password');
     let userInstance;
 
-    db.user.authenticate(body).then(user => {
-      let token = user.generateToken('authentication');
-      userInstance = user;
-      return db.token.create({
-        token: token
+    db.user
+      .authenticate(body)
+      .then((user) => {
+        const token = user.generateToken('authentication');
+        userInstance = user;
+        return db.token.create({
+          token,
+        });
+      })
+      .then((tokenInstance) => {
+        res.cookie('forumapp_login_token', tokenInstance.get('token'));
+        res.redirect('/');
+      })
+      .catch((err) => {
+        res.status(401).send(err);
       });
-    }).then(tokenInstance => {
-      // res.header('Auth', tokenInstance.get('token')).json(userInstance.toPublicJSON());
-      res.cookie('forumapp_login_token', tokenInstance.get('token'));
-      res.redirect('/');
-    }).catch(err => {
-      console.log('error: ' + err);
-      res.status(401).send(err);
-    });
   });
 
 
-  router.post('/esquecisenha', (req,res, next) => {
+  router.post('/esquecisenha', (req, res, next) => {
+    const { email } = req.body;
 
-    let email = req.body.email;
-
-    db.user.findOne({
-      where: { email: email }
-    }).then(user => {
-      if (user) {
-        res.send(JSON.stringify(user.toPublicJSON()));
-      } else {
-        res.status(404).send();
-      }
-    }, err => {
-      res.status(500).send();
-    });
-
+    db.user
+      .findOne({
+        where: { email },
+      })
+      .then((user) => {
+        if (user) {
+          res.send(JSON.stringify(user.toPublicJSON()));
+        } else {
+          res.status(404).send();
+        }
+      }, (err) => {
+        res.status(500).send(err);
+      });
   });
 
 
   return router;
 };
-

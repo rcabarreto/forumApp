@@ -1,4 +1,4 @@
-'use strict';
+
 
 require('./polyfills');
 
@@ -10,13 +10,11 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
-const schedule = require('node-schedule');
-
-const db = require('./db');
 
 const exphbs = require('express-handlebars');
 const handlebars = require('handlebars');
 const HandlebarsIntl = require('handlebars-intl');
+const db = require('./db');
 const hbsHelpers = require('./lib/helpers')(handlebars);
 
 const middleware = require('./middleware')(db);
@@ -40,16 +38,15 @@ app.disable('x-powered-by');
 
 
 // view engine setup
-let hbs = exphbs.create({
+const hbs = exphbs.create({
   extname: '.hbs',
   defaultLayout: 'layout',
   helpers: hbsHelpers,
-  partialsDir: ['views/partials/']
+  partialsDir: ['views/partials/'],
 });
 app.engine(hbs.extname, hbs.engine);
 app.set('view engine', hbs.extname);
 HandlebarsIntl.registerWith(hbs.handlebars);
-
 
 
 // uncomment after placing your favicon in /public
@@ -62,7 +59,7 @@ app.use(sassMiddleware({
   src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
   indentedSyntax: false,
-  sourceMap: true
+  sourceMap: true,
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -79,7 +76,7 @@ app.use('/post', post);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  let err = new Error('Not Found');
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -96,9 +93,6 @@ app.use((err, req, res, next) => {
 });
 
 // sync the database
-db.sequelize.sync().then(() => {
-  // {force:true}
-
-});
+db.sequelize.sync();
 
 module.exports = app;

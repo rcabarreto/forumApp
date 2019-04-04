@@ -1,23 +1,17 @@
-'use strict';
 
-let express = require('express');
-
+const express = require('express');
 
 module.exports = (db, middleware) => {
+  const router = express.Router();
 
-  let router = express.Router();
-
-
-  /* GET home page. */
   router.get('/', (req, res, next) => {
-
-    db.user.findAll().then(users => {
-      res.render('users', { users: users });
-    });
-
+    db.user
+      .findAll()
+      .then((users) => {
+        res.render('users', { users });
+      });
   });
 
 
   return router;
 };
-
